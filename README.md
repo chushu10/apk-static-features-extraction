@@ -1,6 +1,6 @@
 # apk-static-features-extraction
 
-This work is an extention of [Androguard](https://github.com/androguard/androguard) and [MobSF](https://github.com/ajinabraham/Mobile-Security-Framework-MobSF). For more information about Androguard and MobSF, please click the link below:
+This work is an extention of [Androguard](https://github.com/androguard/androguard) and [MobSF](https://github.com/ajinabraham/Mobile-Security-Framework-MobSF). For more information about Androguard and MobSF, please click the links below:
 
 - [Androguard](https://github.com/androguard/androguard): Reverse engineering, Malware and goodware analysis of Android applications ... and more (ninja !)
 - [MobSF](https://github.com/ajinabraham/Mobile-Security-Framework-MobSF): Mobile Security Framework is an intelligent, all-in-one open source mobile application (Android/iOS) automated pen-testing framework capable of performing static, dynamic analysis and web API testing. http://opensecurity.in
