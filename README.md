@@ -9,9 +9,9 @@ This work is an extention of [Androguard](https://github.com/androguard/androgua
 
 This work contains three parts:
 
-- Automatic crawler of Android APK. In directory "apk_downloader".
-- Extension of Androguard. In directory "androguard".
-- Extension of MobSF. In directory "mobsf"
+- Automatic crawler of Android APK. In directory "apk_downloader".(written in python 2)
+- Extension of Androguard. In directory "androguard".(written in python 2)
+- Extension of MobSF. In directory "mobsf".(written in python 3)
 
 # How to install
 
