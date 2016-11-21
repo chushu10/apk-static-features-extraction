@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import hashlib, os, json, urllib, argparse
 
-# 计算文件的hash值
+# calc hash md5 digest
 def md5(filename):
     hash_md5 = hashlib.md5()
     with open(filename, 'rb') as f:
@@ -11,7 +11,7 @@ def md5(filename):
             hash_md5.update(chunk)
     return hash_md5.hexdigest()
 
-# 将文件名重命名为hash值
+# rename filename as hash md5 digest
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--directory', help='path of the directory')
@@ -21,15 +21,15 @@ def main():
     else:
         parser.print_help()
 
-    # 文件名-摘要字典
+    # filename_digest dict
     filename_digest = {}
     repeat_filename_digest = {}
     filename_list = os.listdir(directory)
-    # 摘要集合，防止重复
+    # digest set, in case there are duplicates
     digest_set = set()
     for filename in filename_list:
-        # 跳过rename.py和filename_digest.json文件
-        if filename == 'rename.py' or filename == 'filename_digest.json':
+        # file must be apk
+        if os.path.splitext(filename)[1] != '.apk':
             continue
 
         digest = md5(os.path.join(directory, filename))
@@ -46,10 +46,10 @@ def main():
         else:
             repeat_filename_digest[decoded_filename] = digest
 
-    # 提示重复的文件名及其摘要
-    print('\n')
+    # alert duplicates
+    print '\n'
     for filename in repeat_filename_digest:
-        print(filename + ' repeated, it\'s digest is ' + repeat_filename_digest[filename])
+        print filename + ' repeated, it\'s digest is ' + repeat_filename_digest[filename]
         os.remove(os.path.join(directory, filename))
 
     # 将原始文件名-摘要字典存入json文件中

@@ -27,8 +27,8 @@ There are 4 python scripts in directory "apk_downloader":
 
 - apk_downloader.py(run with python 2)
 - my_html_parser.py
-- rename.py(run with python 3)
-- let_rename_work.py(run with python 3)
+- rename.py(run with python 2)
+- let_rename_work.py(run with python 2)
 
 "apk_downloader.py" and "my_html_parser.py" are used to download apks from [anruan](anruan.com) app store. If you want to download apps from another app store, change the code in "my_html_parser.py"(you should understand how to parse HTML and get what you want from Web page written in HTML, refer to [this direction](http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014320023122880232500da9dc4a4486ad00426f081c15000)). "apk_downloader.py" will generate sub-directories in its current directory, these sub-directories contain the apps downloaded.
 
