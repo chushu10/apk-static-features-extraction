@@ -30,7 +30,7 @@ There are 4 python scripts in directory "apk_downloader":
 - rename.py(run with python 2)
 - let_rename_work.py(run with python 2)
 
-"apk_downloader.py" and "my_html_parser.py" are used to download apks from [anruan](anruan.com) app store. If you want to download apps from another app store, change the code in "my_html_parser.py"(you should understand how to parse HTML and get what you want from Web page written in HTML, refer to [this direction](http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014320023122880232500da9dc4a4486ad00426f081c15000)). "apk_downloader.py" will generate sub-directories in its current directory, these sub-directories contain the apps downloaded.
+"apk_downloader.py" and "my_html_parser.py" are used to download apks from [anruan](http://www.anruan.com) app store. If you want to download apps from another app store, change the code in "my_html_parser.py"(you should understand how to parse HTML and get what you want from Web page written in HTML, refer to [this direction](http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014320023122880232500da9dc4a4486ad00426f081c15000)). "apk_downloader.py" will generate sub-directories in its current directory, these sub-directories contain the apps downloaded.
 
 "rename.py" is used to rename the app names to its corresponding hash md5 digest, since most of the apps downloaded are named in Chinese. However, all of the Android static code analyzer cannot tackle with Chinese characters. "let_rename_work.py" is simply a lazy script used to automatically trigger "rename.py" work in every directory. "rename.py" generate a "filename_digest.json" which saves the relations between the original filename and its hash md5 digest.
 
