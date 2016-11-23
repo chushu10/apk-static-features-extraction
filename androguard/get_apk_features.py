@@ -551,7 +551,6 @@ def main():
                 print '-'*60
                 traceback.print_exc(file=sys.stdout)
                 print '-'*60
-                cannot_analyze.append(filename)
                 continue
             obj['data'].append([])
             for attr_name in obj['attributes']:
