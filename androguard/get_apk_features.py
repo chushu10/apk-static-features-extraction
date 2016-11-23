@@ -544,7 +544,7 @@ def main():
             print i+1, filename + ':'
             try:
                 path_to_apk = os.path.join(directory, filename)
-                path_to_session = os.path.join(directory, filename+'.json')
+                path_to_session = os.path.join(os.path.join(directory, 'sessions'), filename+'.json')
                 fv = analyze(path_to_apk, path_to_session, os.path.basename(os.path.normpath(directory)), security)
             except Exception, e:
                 print "Exception in user code:"
