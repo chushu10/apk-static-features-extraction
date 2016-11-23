@@ -126,13 +126,13 @@ class FeatureVector(object):
                  taskAffinity, hPictureCount, mPictureCount, lPictureCount, xPictureCount, totalCount)
         
 
-def analyze(path_to_apk, apk_category, security):
+def analyze(path_to_apk, path_to_session, apk_category, security):
     apk_zip = zipfile.ZipFile(path_to_apk)
     apk_size = os.path.getsize(path_to_apk)
     dex_size = apk_zip.getinfo('classes.dex').file_size
 
     # Analyze apk
-    a, d, dx = androlyze.AnalyzeAPK(path_to_apk, decompiler='dad')
+    a, d, dx = androlyze.load_session(path_to_session)
 
     # APK features
     if a.get_min_sdk_version() is not None:
@@ -537,14 +537,15 @@ def main():
         'data': [],
     }
 
-    cannot_analyze = []
     i = 0
     print os.path.basename(os.path.normpath(directory))
     for filename in os.listdir(directory):
         if (os.path.splitext(filename)[1] == '.apk') or (os.path.splitext(filename)[1] == '.vir'):
             print i+1, filename + ':'
             try:
-                fv = analyze(os.path.join(directory, filename), os.path.basename(os.path.normpath(directory)), security)
+                path_to_apk = os.path.join(directory, filename)
+                path_to_session = os.path.join(directory, filename+'.json')
+                fv = analyze(path_to_apk, path_to_session, os.path.basename(os.path.normpath(directory)), security)
             except Exception, e:
                 print "Exception in user code:"
                 print '-'*60
@@ -557,18 +558,7 @@ def main():
                 for attr in dir(fv):
                     if attr_name[0] == attr:
                         obj['data'][i].append(getattr(fv, attr))
-
             i += 1
-            # if i == 2:
-            #    break
-
-    print 'Cannot analyze:'
-    cannot = open(os.path.join(directory, 'cannot_analyze.txt'), 'w')
-    cannot.write('Cannot analyze:\n')
-    for filename in cannot_analyze:
-        print filename
-        cannot.write(filename + '\n')
-    cannot.close()
 
     f = open(os.path.join(directory, 'weka_testset.arff'), 'w')
     arff.dump(obj, f)
