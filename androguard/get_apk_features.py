@@ -541,8 +541,7 @@ def main():
     i = 0
     print os.path.basename(os.path.normpath(directory))
     for filename in os.listdir(directory):
-        if os.path.splitext(filename)[1] == '.apk':
-        #if filename == 'bb54411d0f7157afe887a2e8187d1c65.apk':
+        if (os.path.splitext(filename)[1] == '.apk') or (os.path.splitext(filename)[1] == '.vir'):
             print i+1, filename + ':'
             try:
                 fv = analyze(os.path.join(directory, filename), os.path.basename(os.path.normpath(directory)), security)

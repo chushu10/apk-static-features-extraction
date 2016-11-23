@@ -3,9 +3,10 @@
 
 import os, subprocess
 
+directory = '/home/sec06/下载/Dataset-malware'
 def main():
-    for directory in os.listdir('/home/sec06/下载/Dataset-malware'):
-        r = subprocess.call(['python', 'get_apk_features.py', '-d', os.path.join('/home/sec06/下载/Dataset-malware', directory)], '-s', '-1')
+    for subdirectory in os.listdir():
+        r = subprocess.call(['python', 'get_apk_features.py', '-d', os.path.join(directory, subdirectory), '-s', '-1'])
 
 if __name__ == '__main__':
     main()
