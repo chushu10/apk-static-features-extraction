@@ -36,12 +36,16 @@ There are 4 python scripts in directory "apk_downloader":
 
 # Extension of Androguard
 
-There are 2 python scripts in directory "androguard":
+There are 4 python scripts in directory "androguard":
 
 - get_apk_features.py(run with python 2)
 - let_get_apk_features_work.py(run with python 2)
+- mass_static_analysis.py(run with python 2)
+- let_mass_static_analysis_work.py(run with python 2)
 
-"get_apk_features.py" is used to extract apk features using androguard analyzer, it will generate a "weka_testset.arff" file for later study, and a "cannot_analyze.txt" file in case there are apps that cannot be analyzed by androguard. "let_get_apk_features_work.py" is simply a lazy script used to automatically trigger "get_apk_features_work.py" work in every directory. 
+"mass_static_analysis.py" is used to analyze apk massively, it will create a "sessions" directory in the apk directory, and save androguard analysis sessions in it for later feature extraction.
+
+"get_apk_features.py" is used to extract apk features from saved sessions mentioned above, it will generate a "weka_testset.arff" file for later study, and a "cannot_analyze.txt" file in case there are apps that cannot be analyzed by androguard. "let_get_apk_features_work.py" is simply a lazy script used to automatically trigger "get_apk_features_work.py" work in every directory. 
 
 # Extension of MobSF
 
