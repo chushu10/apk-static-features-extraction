@@ -166,8 +166,11 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
         sendSMS = 1
     else:
         sendSMS = 0
-    # deleteSMS
-    deleteSMS = 0
+    # deleteSMS, previously all zero
+    if len(dx.get_tainted_packages().search_methods('Landroid/content/ContentResolver;', 'delete', '')) > 0:
+        deleteSMS = 1
+    else:
+        deleteSMS = 0
     # interruptSMS
     if len(dx.get_tainted_packages().search_methods('Landroid/content/BroadcastReceiver;', 'abortBroadcast', '.')) > 0:
         interruptSMS = 1
@@ -215,13 +218,17 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
     field_list = []
     for field in fields:
         field_list.append(field)
-    # buttonCount
+    # widget count
+    # EditViewCount, previously all zero
+    # ToastCount, previously all zero
     buttonCount, TextViewCount, EditViewCount, ImageButtonCount, CheckBoxCount, RadioGroupCount, RadioButtonCount, ToastCount, SpinnerCount, ListViewCount = 0,0,0,0,0,0,0,0,0,0
     for field in field_list:
         if 'Landroid/widget/Button;' in field[1]:
             buttonCount += 1
         elif 'Landroid/widget/TextView;' in field[1]:
             TextViewCount += 1
+        elif 'Landroid/widget/EditText;' in field[1]:
+            EditViewCount += 1
         elif 'Landroid/widget/ImageButton;' in field[1]:
             ImageButtonCount += 1
         elif 'Landroid/widget/CheckBox;' in field[1]:
@@ -230,6 +237,8 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
             RadioGroupCount += 1
         elif 'Landroid/widget/RadioButton;' in field[1]:
             RadioButtonCount += 1
+        elif 'Landroid/widget/Toast;' in field[1]:
+            ToastCount += 1
         elif 'Landroid/widget/Spinner;' in field[1]:
             SpinnerCount += 1
         elif 'Landroid/widget/ListView;' in field[1]:
@@ -353,8 +362,8 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
         sharedUserId = a.get_AndroidManifest().getElementsByTagName('manifest')[0].getAttribute('android:sharedUserId')
     else:
         sharedUserId = ''
-    # permissionCount
-    permissionCount = 0
+    # permissionCount, previously all zero
+    permissionCount = len(a.get_permissions())
     # activityCount
     activityCount = len(a.get_activities())
     # serviceCount
@@ -363,7 +372,7 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
     receiverCount = len(a.get_receivers())
     # providerCount
     providerCount = len(a.get_providers())
-    # exportedCount
+    # exportedCount, previously all zero
     exportedCount = 0
     for activity in a.get_AndroidManifest().getElementsByTagName('activity'):
         if activity.getAttribute('android:exported') == 'true':
@@ -405,7 +414,7 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
     # hPictureCount
     # mPictureCount
     # lPictureCount
-    # xPictureCount
+    # xPictureCount, previously all zero
     hPictureCount, mPictureCount, lPictureCount, xPictureCount = 0, 0, 0, 0
     for info in a.zip.infolist():
         if 'res/drawable-hdpi' in info.filename:
