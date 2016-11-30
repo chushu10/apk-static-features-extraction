@@ -121,7 +121,7 @@ def main():
     #}
 
     # Part 1: merge arff by folders
-    if mode == 0:
+    if mode == '0':
         for folder in os.listdir(directory):
             if os.path.isdir(os.path.join(directory, folder)):
                 print 'Merging ' + folder
@@ -143,7 +143,7 @@ def main():
         f.close()
 
     # Part 2: merge two arff files
-    if mode == 1
+    if mode == '1':
         f1 = open(os.path.join(directory, 'weka_testset_1.arff'), 'r')
         file1 = f1.read()
         f1.close
