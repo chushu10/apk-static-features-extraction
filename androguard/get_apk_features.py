@@ -17,8 +17,8 @@ class FeatureVector(object):
 
     __metaclass__ = OrderedClassMembers
     
-    def __init__(self, apk_category, apk_size, dex_size, min_andrversion, max_andrversion,
-                 target_andrversion, versionName, installLocation, security, methodCount,
+    def __init__(self, apk_size, dex_size, min_andrversion, max_andrversion,
+                 target_andrversion, security, methodCount,
                  classCount, crypto_count, dynCode_count, native_count, reflect_count,
                  sendSMS, deleteSMS, interruptSMS, httpPost, deviceId, simCountry,
                  installedPkg, loadOtherCode, subprocess, executeOtherCode, jni, unix,
@@ -28,18 +28,17 @@ class FeatureVector(object):
                  RECEIVE_BOOT_COMPLETED, RECEIVE_MMS, RECEIVE_SMS, RECEIVE_WAP_PUSH,
                  SEND_SMS, CALL_PHONE, CALL_PRIVILEGED, PROCESS_OUTGOING_CALLS, READ_CALL_LOG,
                  READ_EXTERNAL_STORAGE, READ_LOGS, ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION,
-                 BLUETOOTH, CAMERA, INSTALL_PACKAGES, NFC, READ_CONTACTS, sharedUserId,
+                 BLUETOOTH, CAMERA, INSTALL_PACKAGES, NFC, READ_CONTACTS,
                  permissionCount, activityCount, serviceCount, receiverCount, providerCount,
-                 exportedCount, backupAgent, killAfterRestore, allowTaskReparenting, process,
-                 taskAffinity, hPictureCount, mPictureCount, lPictureCount, xPictureCount, totalCount):
-        self.apk_category = apk_category
+                 exportedCount, hPictureCount, mPictureCount, lPictureCount, xPictureCount, totalCount):
+        # self.apk_category = apk_category
         self.apk_size = apk_size
         self.dex_size = dex_size
         self.min_andrversion = min_andrversion
         self.max_andrversion = max_andrversion
         self.target_andrversion = target_andrversion
-        self.versionName = versionName
-        self.installLocation = installLocation
+        # self.versionName = versionName
+        # self.installLocation = installLocation
         self.security = security
         self.methodCount = methodCount
         self.classCount = classCount
@@ -92,25 +91,25 @@ class FeatureVector(object):
         self.INSTALL_PACKAGES = INSTALL_PACKAGES
         self.NFC = NFC
         self.READ_CONTACTS = READ_CONTACTS
-        self.sharedUserId = sharedUserId
+        # self.sharedUserId = sharedUserId
         self.permissionCount = permissionCount
         self.activityCount = activityCount
         self.serviceCount = serviceCount
         self.receiverCount = receiverCount
         self.providerCount = providerCount
         self.exportedCount = exportedCount
-        self.backupAgent = backupAgent
-        self.killAfterRestore = killAfterRestore
-        self.allowTaskReparenting = allowTaskReparenting
-        self.process = process
-        self.taskAffinity = taskAffinity
+        # self.backupAgent = backupAgent
+        # self.killAfterRestore = killAfterRestore
+        # self.allowTaskReparenting = allowTaskReparenting
+        # self.process = process
+        # self.taskAffinity = taskAffinity
         self.hPictureCount = hPictureCount
         self.mPictureCount = mPictureCount
         self.lPictureCount = lPictureCount
         self.xPictureCount = xPictureCount
         self.totalCount = totalCount
-        print (apk_category, apk_size, dex_size, min_andrversion, max_andrversion,
-                 target_andrversion, versionName, installLocation, security, methodCount,
+        print (apk_size, dex_size, min_andrversion, max_andrversion,
+                 target_andrversion, security, methodCount,
                  classCount, crypto_count, dynCode_count, native_count, reflect_count,
                  sendSMS, deleteSMS, interruptSMS, httpPost, deviceId, simCountry,
                  installedPkg, loadOtherCode, subprocess, executeOtherCode, jni, unix,
@@ -120,13 +119,12 @@ class FeatureVector(object):
                  RECEIVE_BOOT_COMPLETED, RECEIVE_MMS, RECEIVE_SMS, RECEIVE_WAP_PUSH,
                  SEND_SMS, CALL_PHONE, CALL_PRIVILEGED, PROCESS_OUTGOING_CALLS, READ_CALL_LOG,
                  READ_EXTERNAL_STORAGE, READ_LOGS, ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION,
-                 BLUETOOTH, CAMERA, INSTALL_PACKAGES, NFC, READ_CONTACTS, sharedUserId,
+                 BLUETOOTH, CAMERA, INSTALL_PACKAGES, NFC, READ_CONTACTS,
                  permissionCount, activityCount, serviceCount, receiverCount, providerCount,
-                 exportedCount, backupAgent, killAfterRestore, allowTaskReparenting, process,
-                 taskAffinity, hPictureCount, mPictureCount, lPictureCount, xPictureCount, totalCount)
+                 exportedCount, hPictureCount, mPictureCount, lPictureCount, xPictureCount, totalCount)
         
 
-def analyze(path_to_apk, path_to_session, apk_category, security):
+def analyze(path_to_apk, path_to_session, security):
     apk_zip = zipfile.ZipFile(path_to_apk)
     apk_size = os.path.getsize(path_to_apk)
     dex_size = apk_zip.getinfo('classes.dex').file_size
@@ -147,11 +145,12 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
         target_andrversion = str(a.get_target_sdk_version())
     else:
         target_andrversion = 0
-    if a.get_androidversion_name() is not None:
-        versionName = str(a.get_androidversion_name())
-    else:
-        versionName = ''
-    installLocation = 0
+
+    # if a.get_androidversion_name() is not None:
+    #     versionName = str(a.get_androidversion_name())
+    # else:
+    #     versionName = ''
+
     methodCount = d.get_len_methods()
     classCount = len(d.get_classes())
     crypto_count = len(dx.get_tainted_packages().search_methods('Ljava/crypto/.', '.', '.'))
@@ -357,11 +356,13 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
         READ_CONTACTS = 0
 
     # Manifest features
-    # sharedUserId
-    if a.get_AndroidManifest().getElementsByTagName('manifest')[0].getAttribute('android:sharedUserId') is not None:
-        sharedUserId = a.get_AndroidManifest().getElementsByTagName('manifest')[0].getAttribute('android:sharedUserId')
-    else:
-        sharedUserId = ''
+
+    # # sharedUserId
+    # if a.get_AndroidManifest().getElementsByTagName('manifest')[0].getAttribute('android:sharedUserId') is not None:
+    #     sharedUserId = a.get_AndroidManifest().getElementsByTagName('manifest')[0].getAttribute('android:sharedUserId')
+    # else:
+    #     sharedUserId = ''
+
     # permissionCount, previously all zero
     permissionCount = len(a.get_permissions())
     # activityCount
@@ -386,31 +387,32 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
     for provider in a.get_AndroidManifest().getElementsByTagName('provider'):
         if activity.getAttribute('android:exported') == 'true':
             exportedCount += 1
-    # backupAgent
-    if a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:backupAgent') is not None:
-        backupAgent = a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:backupAgent')
-    else:
-        backupAgent = ''
-    # killAfterRestore
-    if a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:killAfterRestore') is not None:
-        killAfterRestore = a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:killAfterRestore')
-    else:
-        killAfterRestore = ''
-    # allowTaskReparenting
-    if a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:allowTaskReparenting') is not None:
-        allowTaskReparenting = a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:allowTaskReparenting')
-    else:
-        allowTaskReparenting = ''
-    # process
-    if a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:process') is not None:
-        process = a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:process')
-    else:
-        process = ''
-    # taskAffinity
-    if a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:taskAffinity') is not None:
-        taskAffinity = a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:taskAffinity')
-    else:
-        taskAffinity = ''
+    # # backupAgent
+    # if a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:backupAgent') is not None:
+    #     backupAgent = a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:backupAgent')
+    # else:
+    #     backupAgent = ''
+    # # killAfterRestore
+    # if a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:killAfterRestore') is not None:
+    #     killAfterRestore = a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:killAfterRestore')
+    # else:
+    #     killAfterRestore = ''
+    # # allowTaskReparenting
+    # if a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:allowTaskReparenting') is not None:
+    #     allowTaskReparenting = a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:allowTaskReparenting')
+    # else:
+    #     allowTaskReparenting = ''
+    # # process
+    # if a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:process') is not None:
+    #     process = a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:process')
+    # else:
+    #     process = ''
+    # # taskAffinity
+    # if a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:taskAffinity') is not None:
+    #     taskAffinity = a.get_AndroidManifest().getElementsByTagName('application')[0].getAttribute('android:taskAffinity')
+    # else:
+    #     taskAffinity = ''
+
     # hPictureCount
     # mPictureCount
     # lPictureCount
@@ -429,8 +431,8 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
     totalCount = hPictureCount + mPictureCount + lPictureCount + xPictureCount
 
     # Initialize FeatureVector
-    fv = FeatureVector(apk_category, apk_size, dex_size, min_andrversion, max_andrversion,
-                 target_andrversion, versionName, installLocation, security, methodCount,
+    fv = FeatureVector(apk_size, dex_size, min_andrversion, max_andrversion,
+                 target_andrversion, security, methodCount,
                  classCount, crypto_count, dynCode_count, native_count, reflect_count,
                  sendSMS, deleteSMS, interruptSMS, httpPost, deviceId, simCountry,
                  installedPkg, loadOtherCode, subprocess, executeOtherCode, jni, unix,
@@ -440,10 +442,9 @@ def analyze(path_to_apk, path_to_session, apk_category, security):
                  RECEIVE_BOOT_COMPLETED, RECEIVE_MMS, RECEIVE_SMS, RECEIVE_WAP_PUSH,
                  SEND_SMS, CALL_PHONE, CALL_PRIVILEGED, PROCESS_OUTGOING_CALLS, READ_CALL_LOG,
                  READ_EXTERNAL_STORAGE, READ_LOGS, ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION,
-                 BLUETOOTH, CAMERA, INSTALL_PACKAGES, NFC, READ_CONTACTS, sharedUserId,
+                 BLUETOOTH, CAMERA, INSTALL_PACKAGES, NFC, READ_CONTACTS,
                  permissionCount, activityCount, serviceCount, receiverCount, providerCount,
-                 exportedCount, backupAgent, killAfterRestore, allowTaskReparenting, process,
-                 taskAffinity, hPictureCount, mPictureCount, lPictureCount, xPictureCount, totalCount)
+                 exportedCount, hPictureCount, mPictureCount, lPictureCount, xPictureCount, totalCount)
     return fv
 
 def main():
@@ -465,14 +466,11 @@ def main():
         'description': u'',
         'relation': 'testset',
         'attributes': [
-            ('apk_category', 'STRING'),
             ('apk_size', 'REAL'),
             ('dex_size', 'REAL'),
             ('min_andrversion', 'INTEGER'),
             ('max_andrversion', 'INTEGER'),
             ('target_andrversion', 'INTEGER'),
-            ('versionName', 'STRING'),
-            ('installLocation', 'INTEGER'),
             ('security', ['-1','0']),
             ('methodCount', 'INTEGER'),
             ('classCount', 'INTEGER'),
@@ -525,18 +523,12 @@ def main():
             ('INSTALL_PACKAGES', ['1', '0']),
             ('NFC', ['1', '0']),
             ('READ_CONTACTS', ['1', '0']),
-            ('sharedUserId', 'STRING'),
             ('permissionCount', 'INTEGER'),
             ('activityCount', 'INTEGER'),
             ('serviceCount', 'INTEGER'),
             ('receiverCount', 'INTEGER'),
             ('providerCount', 'INTEGER'),
             ('exportedCount', 'INTEGER'),
-            ('backupAgent', 'STRING'),
-            ('killAfterRestore', 'STRING'),
-            ('allowTaskReparenting', 'STRING'),
-            ('process', 'STRING'),
-            ('taskAffinity', 'STRING'),
             ('hPictureCount', 'INTEGER'),
             ('mPictureCount', 'INTEGER'),
             ('lPictureCount', 'INTEGER'),
