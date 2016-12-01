@@ -15,10 +15,11 @@ def main():
     cannot_analyze = []
     print os.path.basename(os.path.normpath(directory))
     os.mkdir(os.path.join(directory, 'sessions'))
+    i = 0
     for filename in os.listdir(directory):
         if (os.path.splitext(filename)[1] == '.apk') or (os.path.splitext(filename)[1] == '.vir'):
             try:
-                print 'Analyzing', filename
+                print i, 'Analyzing', filename
                 a,d,dx = androlyze.AnalyzeAPK(os.path.join(directory, filename), decompiler='dad')
                 androlyze.save_session([a,d,dx], os.path.join(os.path.join(directory, 'sessions'), filename+'.json'))
             except Exception, e:
@@ -28,6 +29,7 @@ def main():
                 print '-'*60
                 cannot_analyze.append(filename)
                 continue
+            i += 1
 
     print 'Cannot analyze:'
     cannot = open(os.path.join(directory, 'cannot_analyze.txt'), 'w')
