@@ -151,7 +151,7 @@ def main():
         for data in d2['data']:
             obj['data'].append(data)
 
-        f = open('weka_testset.arff', 'w')
+        f = open(os.path.join(directory, 'weka_testset.arff'), 'w')
         arff.dump(obj, f)
         f.close()
 
