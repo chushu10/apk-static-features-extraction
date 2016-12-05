@@ -142,7 +142,7 @@ def main():
                 for data in d['data']:
                     # if you want to shrink the dataset, uncomment two lines below
                     if i == size[folder]:
-                       break
+                        break
                     obj['data'].append(data)
                     i += 1
 
