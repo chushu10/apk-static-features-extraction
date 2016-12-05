@@ -110,6 +110,23 @@ def main():
     #    'yingyin': 60,
     #    'yuedu': 27,
     #}
+    size = {
+       'anquan': 54,
+       'ditu': 39,
+       'liaotian': 42,
+       'meihua': 1064,
+       'paishe': 141,
+       'richeng': 238,
+       'shangwu': 87,
+       'shiyong': 684,
+       'tongxun': 178,
+       'tuxiang': 153,
+       'wangluo': 275,
+       'xitong': 1050,
+       'xuexi': 117,
+       'yingyin': 213,
+       'yuedu': 95,
+    }
 
     # Part 1: merge arff by folders
     if mode == '0':
@@ -124,12 +141,12 @@ def main():
                 i = 0
                 for data in d['data']:
                     # if you want to shrink the dataset, uncomment two lines below
-                    #if i == size[folder]:
-                    #    break
+                    if i == size[folder]:
+                       break
                     obj['data'].append(data)
                     i += 1
 
-        f = open(os.path.join(directory, 'weka_testset.arff'), 'w')
+        f = open(os.path.join(directory, 'weka_testset_4430.arff'), 'w')
         arff.dump(obj, f)
         f.close()
 
