@@ -137,7 +137,7 @@ def main():
     if mode == '1':
         f1 = open(os.path.join(directory, 'weka_testset_1.arff'), 'r')
         file1 = f1.read()
-        f1.close
+        f1.close()
 
         f2 = open(os.path.join(directory, 'weka_testset_2.arff'), 'r')
         file2 = f2.read()
