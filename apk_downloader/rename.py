@@ -29,7 +29,7 @@ def main():
     digest_set = set()
     for filename in filename_list:
         # file must be apk
-        if os.path.splitext(filename)[1] != '.apk':
+        if (os.path.splitext(filename)[1] != '.apk') and (os.path.splitext(filename)[1] != '.vir'):
             continue
 
         digest = md5(os.path.join(directory, filename))
