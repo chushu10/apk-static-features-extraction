@@ -1,0 +1,657 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     testset
+Instances:    55571
+Attributes:   63
+              apk_size
+              dex_size
+              min_andrversion
+              max_andrversion
+              target_andrversion
+              security
+              methodCount
+              classCount
+              crypto_count
+              dynCode_count
+              native_count
+              reflect_count
+              sendSMS
+              deleteSMS
+              interruptSMS
+              httpPost
+              deviceId
+              simCountry
+              installedPkg
+              loadOtherCode
+              subprocess
+              executeOtherCode
+              jni
+              unix
+              buttonCount
+              TextViewCount
+              EditViewCount
+              ImageButtonCount
+              CheckBoxCount
+              RadioGroupCount
+              RadioButtonCount
+              ToastCount
+              SpinnerCount
+              ListViewCount
+              fileCount
+              INTERNET
+              SET_DEBUG_APP
+              MODIFY_PHONE_STATE
+              RECORD_AUDIO
+              RECEIVE_BOOT_COMPLETED
+              RECEIVE_MMS
+              RECEIVE_SMS
+              RECEIVE_WAP_PUSH
+              SEND_SMS
+              CALL_PHONE
+              CALL_PRIVILEGED
+              PROCESS_OUTGOING_CALLS
+              READ_CALL_LOG
+              READ_EXTERNAL_STORAGE
+              READ_LOGS
+              ACCESS_COARSE_LOCATION
+              ACCESS_FINE_LOCATION
+              BLUETOOTH
+              CAMERA
+              INSTALL_PACKAGES
+              NFC
+              READ_CONTACTS
+              permissionCount
+              activityCount
+              serviceCount
+              receiverCount
+              providerCount
+              exportedCount
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+SEND_SMS = 1
+|   EditViewCount <= 1
+|   |   activityCount <= 15
+|   |   |   min_andrversion <= 7
+|   |   |   |   ImageButtonCount <= 1
+|   |   |   |   |   dex_size <= 388476
+|   |   |   |   |   |   INTERNET = 1
+|   |   |   |   |   |   |   ListViewCount <= 1
+|   |   |   |   |   |   |   |   serviceCount <= 0
+|   |   |   |   |   |   |   |   |   activityCount <= 4
+|   |   |   |   |   |   |   |   |   |   ACCESS_FINE_LOCATION = 1: 0 (22.0/1.0)
+|   |   |   |   |   |   |   |   |   |   ACCESS_FINE_LOCATION = 0
+|   |   |   |   |   |   |   |   |   |   |   READ_CONTACTS = 1
+|   |   |   |   |   |   |   |   |   |   |   |   TextViewCount <= 1: 0 (22.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   TextViewCount > 1: -1 (21.0)
+|   |   |   |   |   |   |   |   |   |   |   READ_CONTACTS = 0
+|   |   |   |   |   |   |   |   |   |   |   |   permissionCount <= 3
+|   |   |   |   |   |   |   |   |   |   |   |   |   min_andrversion <= 6: 0 (13.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   min_andrversion > 6: -1 (11.0)
+|   |   |   |   |   |   |   |   |   |   |   |   permissionCount > 3: -1 (239.0/6.0)
+|   |   |   |   |   |   |   |   |   activityCount > 4: 0 (22.0)
+|   |   |   |   |   |   |   |   serviceCount > 0
+|   |   |   |   |   |   |   |   |   target_andrversion <= 8
+|   |   |   |   |   |   |   |   |   |   EditViewCount <= 0: -1 (1829.0/16.0)
+|   |   |   |   |   |   |   |   |   |   EditViewCount > 0
+|   |   |   |   |   |   |   |   |   |   |   deviceId = 1
+|   |   |   |   |   |   |   |   |   |   |   |   TextViewCount <= 1
+|   |   |   |   |   |   |   |   |   |   |   |   |   installedPkg = 1: -1 (7.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   installedPkg = 0: 0 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   TextViewCount > 1: -1 (148.0)
+|   |   |   |   |   |   |   |   |   |   |   deviceId = 0: 0 (7.0)
+|   |   |   |   |   |   |   |   |   target_andrversion > 8
+|   |   |   |   |   |   |   |   |   |   simCountry = 1: -1 (38.0)
+|   |   |   |   |   |   |   |   |   |   simCountry = 0: 0 (6.0)
+|   |   |   |   |   |   |   ListViewCount > 1
+|   |   |   |   |   |   |   |   reflect_count <= 1: 0 (27.0/1.0)
+|   |   |   |   |   |   |   |   reflect_count > 1: -1 (24.0/1.0)
+|   |   |   |   |   |   INTERNET = 0
+|   |   |   |   |   |   |   permissionCount <= 2
+|   |   |   |   |   |   |   |   sendSMS = 1
+|   |   |   |   |   |   |   |   |   READ_CONTACTS = 1: 0 (2.0)
+|   |   |   |   |   |   |   |   |   READ_CONTACTS = 0
+|   |   |   |   |   |   |   |   |   |   buttonCount <= 1
+|   |   |   |   |   |   |   |   |   |   |   target_andrversion <= 2
+|   |   |   |   |   |   |   |   |   |   |   |   fileCount <= 9: -1 (11.0)
+|   |   |   |   |   |   |   |   |   |   |   |   fileCount > 9: 0 (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   target_andrversion > 2: 0 (3.0)
+|   |   |   |   |   |   |   |   |   |   buttonCount > 1: -1 (12.0)
+|   |   |   |   |   |   |   |   sendSMS = 0: 0 (5.0)
+|   |   |   |   |   |   |   permissionCount > 2
+|   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 1
+|   |   |   |   |   |   |   |   |   READ_CONTACTS = 1: 0 (3.0)
+|   |   |   |   |   |   |   |   |   READ_CONTACTS = 0: -1 (2.0)
+|   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 0: 0 (42.0)
+|   |   |   |   |   dex_size > 388476
+|   |   |   |   |   |   ToastCount <= 0
+|   |   |   |   |   |   |   RadioButtonCount <= 1
+|   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 1
+|   |   |   |   |   |   |   |   |   deviceId = 1
+|   |   |   |   |   |   |   |   |   |   CALL_PHONE = 1: 0 (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   CALL_PHONE = 0: -1 (4.0)
+|   |   |   |   |   |   |   |   |   deviceId = 0: 0 (4.0)
+|   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 0: 0 (34.0/1.0)
+|   |   |   |   |   |   |   RadioButtonCount > 1: -1 (4.0/1.0)
+|   |   |   |   |   |   ToastCount > 0: -1 (4.0/1.0)
+|   |   |   |   ImageButtonCount > 1
+|   |   |   |   |   permissionCount <= 13
+|   |   |   |   |   |   installedPkg = 1: -1 (5.0/1.0)
+|   |   |   |   |   |   installedPkg = 0: 0 (64.0/1.0)
+|   |   |   |   |   permissionCount > 13: -1 (16.0/1.0)
+|   |   |   min_andrversion > 7
+|   |   |   |   permissionCount <= 1: -1 (5.0/1.0)
+|   |   |   |   permissionCount > 1: 0 (44.0/1.0)
+|   |   activityCount > 15: 0 (104.0)
+|   EditViewCount > 1
+|   |   INSTALL_PACKAGES = 1
+|   |   |   deviceId = 1
+|   |   |   |   activityCount <= 2: 0 (6.0)
+|   |   |   |   activityCount > 2
+|   |   |   |   |   RECEIVE_WAP_PUSH = 1: 0 (2.0)
+|   |   |   |   |   RECEIVE_WAP_PUSH = 0
+|   |   |   |   |   |   READ_LOGS = 1
+|   |   |   |   |   |   |   dex_size <= 1069276: -1 (2.0)
+|   |   |   |   |   |   |   dex_size > 1069276: 0 (2.0)
+|   |   |   |   |   |   READ_LOGS = 0: -1 (38.0/1.0)
+|   |   |   deviceId = 0: 0 (3.0)
+|   |   INSTALL_PACKAGES = 0
+|   |   |   installedPkg = 1
+|   |   |   |   target_andrversion <= 4
+|   |   |   |   |   RECEIVE_MMS = 1: 0 (4.0)
+|   |   |   |   |   RECEIVE_MMS = 0
+|   |   |   |   |   |   apk_size <= 1823525
+|   |   |   |   |   |   |   permissionCount <= 18
+|   |   |   |   |   |   |   |   CheckBoxCount <= 0: -1 (7.0)
+|   |   |   |   |   |   |   |   CheckBoxCount > 0: 0 (8.0/1.0)
+|   |   |   |   |   |   |   permissionCount > 18: -1 (44.0/1.0)
+|   |   |   |   |   |   apk_size > 1823525
+|   |   |   |   |   |   |   BLUETOOTH = 1: 0 (4.0)
+|   |   |   |   |   |   |   BLUETOOTH = 0
+|   |   |   |   |   |   |   |   READ_CONTACTS = 1
+|   |   |   |   |   |   |   |   |   RadioButtonCount <= 2
+|   |   |   |   |   |   |   |   |   |   receiverCount <= 3: -1 (7.0/1.0)
+|   |   |   |   |   |   |   |   |   |   receiverCount > 3: 0 (2.0)
+|   |   |   |   |   |   |   |   |   RadioButtonCount > 2: 0 (2.0)
+|   |   |   |   |   |   |   |   READ_CONTACTS = 0: 0 (11.0/1.0)
+|   |   |   |   target_andrversion > 4: 0 (29.0)
+|   |   |   installedPkg = 0
+|   |   |   |   deleteSMS = 1
+|   |   |   |   |   READ_CONTACTS = 1
+|   |   |   |   |   |   READ_EXTERNAL_STORAGE = 1
+|   |   |   |   |   |   |   min_andrversion <= 3: -1 (7.0)
+|   |   |   |   |   |   |   min_andrversion > 3: 0 (5.0)
+|   |   |   |   |   |   READ_EXTERNAL_STORAGE = 0
+|   |   |   |   |   |   |   ToastCount <= 0
+|   |   |   |   |   |   |   |   RadioButtonCount <= 4: 0 (99.0/3.0)
+|   |   |   |   |   |   |   |   RadioButtonCount > 4
+|   |   |   |   |   |   |   |   |   CheckBoxCount <= 0: -1 (3.0)
+|   |   |   |   |   |   |   |   |   CheckBoxCount > 0: 0 (4.0)
+|   |   |   |   |   |   |   ToastCount > 0
+|   |   |   |   |   |   |   |   simCountry = 1: -1 (3.0)
+|   |   |   |   |   |   |   |   simCountry = 0: 0 (6.0)
+|   |   |   |   |   READ_CONTACTS = 0
+|   |   |   |   |   |   EditViewCount <= 3
+|   |   |   |   |   |   |   deviceId = 1: -1 (30.0)
+|   |   |   |   |   |   |   deviceId = 0
+|   |   |   |   |   |   |   |   apk_size <= 264994: 0 (2.0)
+|   |   |   |   |   |   |   |   apk_size > 264994: -1 (2.0)
+|   |   |   |   |   |   EditViewCount > 3: 0 (14.0)
+|   |   |   |   deleteSMS = 0: 0 (374.0/9.0)
+SEND_SMS = 0
+|   installedPkg = 1
+|   |   subprocess = 1
+|   |   |   deviceId = 1
+|   |   |   |   target_andrversion <= 9
+|   |   |   |   |   permissionCount <= 6
+|   |   |   |   |   |   min_andrversion <= 2: -1 (16.0)
+|   |   |   |   |   |   min_andrversion > 2
+|   |   |   |   |   |   |   exportedCount <= 0
+|   |   |   |   |   |   |   |   INSTALL_PACKAGES = 1: -1 (8.0/1.0)
+|   |   |   |   |   |   |   |   INSTALL_PACKAGES = 0
+|   |   |   |   |   |   |   |   |   receiverCount <= 3
+|   |   |   |   |   |   |   |   |   |   classCount <= 211
+|   |   |   |   |   |   |   |   |   |   |   jni = 1: -1 (13.0)
+|   |   |   |   |   |   |   |   |   |   |   jni = 0
+|   |   |   |   |   |   |   |   |   |   |   |   deleteSMS = 1: -1 (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   deleteSMS = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   receiverCount <= 1: 0 (17.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   receiverCount > 1
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   buttonCount <= 1: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   buttonCount > 1: -1 (2.0)
+|   |   |   |   |   |   |   |   |   |   classCount > 211: 0 (132.0/8.0)
+|   |   |   |   |   |   |   |   |   receiverCount > 3
+|   |   |   |   |   |   |   |   |   |   sendSMS = 1: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   sendSMS = 0: -1 (8.0)
+|   |   |   |   |   |   |   exportedCount > 0: -1 (35.0/4.0)
+|   |   |   |   |   permissionCount > 6
+|   |   |   |   |   |   reflect_count <= 46
+|   |   |   |   |   |   |   TextViewCount <= 39
+|   |   |   |   |   |   |   |   apk_size <= 1981922
+|   |   |   |   |   |   |   |   |   MODIFY_PHONE_STATE = 1: 0 (12.0/3.0)
+|   |   |   |   |   |   |   |   |   MODIFY_PHONE_STATE = 0
+|   |   |   |   |   |   |   |   |   |   providerCount <= 0
+|   |   |   |   |   |   |   |   |   |   |   CheckBoxCount <= 1
+|   |   |   |   |   |   |   |   |   |   |   |   min_andrversion <= 6: -1 (1487.0/21.0)
+|   |   |   |   |   |   |   |   |   |   |   |   min_andrversion > 6
+|   |   |   |   |   |   |   |   |   |   |   |   |   ACCESS_COARSE_LOCATION = 1: -1 (130.0/5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   ACCESS_COARSE_LOCATION = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   reflect_count <= 3
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   min_andrversion <= 7: -1 (13.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   min_andrversion > 7: 0 (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   reflect_count > 3: 0 (12.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   CheckBoxCount > 1
+|   |   |   |   |   |   |   |   |   |   |   |   min_andrversion <= 6
+|   |   |   |   |   |   |   |   |   |   |   |   |   ListViewCount <= 4
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   permissionCount <= 8
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   apk_size <= 841581: 0 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   apk_size > 841581: -1 (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   permissionCount > 8: -1 (46.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   ListViewCount > 4
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   READ_LOGS = 1: 0 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   READ_LOGS = 0: -1 (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   min_andrversion > 6: 0 (9.0/1.0)
+|   |   |   |   |   |   |   |   |   |   providerCount > 0
+|   |   |   |   |   |   |   |   |   |   |   BLUETOOTH = 1: 0 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   BLUETOOTH = 0
+|   |   |   |   |   |   |   |   |   |   |   |   EditViewCount <= 6
+|   |   |   |   |   |   |   |   |   |   |   |   |   classCount <= 304: 0 (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   classCount > 304
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   fileCount <= 453: -1 (27.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   fileCount > 453: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   EditViewCount > 6: 0 (4.0)
+|   |   |   |   |   |   |   |   apk_size > 1981922
+|   |   |   |   |   |   |   |   |   READ_EXTERNAL_STORAGE = 1
+|   |   |   |   |   |   |   |   |   |   receiverCount <= 3
+|   |   |   |   |   |   |   |   |   |   |   buttonCount <= 4
+|   |   |   |   |   |   |   |   |   |   |   |   EditViewCount <= 0: 0 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   EditViewCount > 0: -1 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   buttonCount > 4: -1 (70.0/2.0)
+|   |   |   |   |   |   |   |   |   |   receiverCount > 3: 0 (7.0/1.0)
+|   |   |   |   |   |   |   |   |   READ_EXTERNAL_STORAGE = 0
+|   |   |   |   |   |   |   |   |   |   classCount <= 145: -1 (9.0)
+|   |   |   |   |   |   |   |   |   |   classCount > 145
+|   |   |   |   |   |   |   |   |   |   |   ImageButtonCount <= 2
+|   |   |   |   |   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 1: -1 (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 0: 0 (32.0)
+|   |   |   |   |   |   |   |   |   |   |   ImageButtonCount > 2
+|   |   |   |   |   |   |   |   |   |   |   |   jni = 1: -1 (10.0)
+|   |   |   |   |   |   |   |   |   |   |   |   jni = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   deleteSMS = 1: 0 (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   deleteSMS = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   buttonCount <= 2: 0 (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   buttonCount > 2: -1 (6.0)
+|   |   |   |   |   |   |   TextViewCount > 39
+|   |   |   |   |   |   |   |   READ_EXTERNAL_STORAGE = 1
+|   |   |   |   |   |   |   |   |   ACCESS_FINE_LOCATION = 1: -1 (17.0/2.0)
+|   |   |   |   |   |   |   |   |   ACCESS_FINE_LOCATION = 0: 0 (4.0)
+|   |   |   |   |   |   |   |   READ_EXTERNAL_STORAGE = 0
+|   |   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 1
+|   |   |   |   |   |   |   |   |   |   dex_size <= 779724: -1 (5.0)
+|   |   |   |   |   |   |   |   |   |   dex_size > 779724
+|   |   |   |   |   |   |   |   |   |   |   ListViewCount <= 3: -1 (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   ListViewCount > 3: 0 (11.0/1.0)
+|   |   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 0: 0 (31.0/1.0)
+|   |   |   |   |   |   reflect_count > 46
+|   |   |   |   |   |   |   READ_EXTERNAL_STORAGE = 1
+|   |   |   |   |   |   |   |   receiverCount <= 0: 0 (2.0)
+|   |   |   |   |   |   |   |   receiverCount > 0: -1 (12.0)
+|   |   |   |   |   |   |   READ_EXTERNAL_STORAGE = 0: 0 (43.0/1.0)
+|   |   |   |   target_andrversion > 9
+|   |   |   |   |   reflect_count <= 3
+|   |   |   |   |   |   target_andrversion <= 12
+|   |   |   |   |   |   |   reflect_count <= 2: 0 (2.0)
+|   |   |   |   |   |   |   reflect_count > 2: -1 (16.0)
+|   |   |   |   |   |   target_andrversion > 12: 0 (22.0/1.0)
+|   |   |   |   |   reflect_count > 3
+|   |   |   |   |   |   buttonCount <= 10: 0 (175.0/2.0)
+|   |   |   |   |   |   buttonCount > 10
+|   |   |   |   |   |   |   sendSMS = 1: -1 (4.0/1.0)
+|   |   |   |   |   |   |   sendSMS = 0
+|   |   |   |   |   |   |   |   ACCESS_COARSE_LOCATION = 1
+|   |   |   |   |   |   |   |   |   RadioGroupCount <= 0: -1 (6.0/1.0)
+|   |   |   |   |   |   |   |   |   RadioGroupCount > 0: 0 (9.0)
+|   |   |   |   |   |   |   |   ACCESS_COARSE_LOCATION = 0: 0 (20.0)
+|   |   |   deviceId = 0: 0 (147.0/1.0)
+|   |   subprocess = 0
+|   |   |   min_andrversion <= 0: -1 (53.0)
+|   |   |   min_andrversion > 0
+|   |   |   |   fileCount <= 115
+|   |   |   |   |   deviceId = 1
+|   |   |   |   |   |   providerCount <= 0
+|   |   |   |   |   |   |   serviceCount <= 2
+|   |   |   |   |   |   |   |   deleteSMS = 1
+|   |   |   |   |   |   |   |   |   simCountry = 1: 0 (2.0)
+|   |   |   |   |   |   |   |   |   simCountry = 0
+|   |   |   |   |   |   |   |   |   |   RadioButtonCount <= 0: -1 (20.0)
+|   |   |   |   |   |   |   |   |   |   RadioButtonCount > 0: 0 (2.0)
+|   |   |   |   |   |   |   |   deleteSMS = 0
+|   |   |   |   |   |   |   |   |   sendSMS = 1: -1 (2.0)
+|   |   |   |   |   |   |   |   |   sendSMS = 0
+|   |   |   |   |   |   |   |   |   |   methodCount <= 2013
+|   |   |   |   |   |   |   |   |   |   |   reflect_count <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   SpinnerCount <= 0: 0 (23.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   SpinnerCount > 0: -1 (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   reflect_count > 0
+|   |   |   |   |   |   |   |   |   |   |   |   ACCESS_COARSE_LOCATION = 1: -1 (13.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   ACCESS_COARSE_LOCATION = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   serviceCount <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   ListViewCount <= 0: 0 (6.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   ListViewCount > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   min_andrversion <= 4: 0 (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   min_andrversion > 4: -1 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   serviceCount > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   classCount <= 255: -1 (20.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   classCount > 255: 0 (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   methodCount > 2013
+|   |   |   |   |   |   |   |   |   |   |   serviceCount <= 1: 0 (45.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   serviceCount > 1
+|   |   |   |   |   |   |   |   |   |   |   |   min_andrversion <= 5: -1 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   min_andrversion > 5: 0 (3.0)
+|   |   |   |   |   |   |   serviceCount > 2: 0 (23.0)
+|   |   |   |   |   |   providerCount > 0: 0 (79.0)
+|   |   |   |   |   deviceId = 0: 0 (395.0)
+|   |   |   |   fileCount > 115: 0 (1180.0/7.0)
+|   installedPkg = 0
+|   |   receiverCount <= 3
+|   |   |   sendSMS = 1
+|   |   |   |   PROCESS_OUTGOING_CALLS = 1: -1 (25.0)
+|   |   |   |   PROCESS_OUTGOING_CALLS = 0
+|   |   |   |   |   RadioButtonCount <= 2
+|   |   |   |   |   |   ACCESS_COARSE_LOCATION = 1
+|   |   |   |   |   |   |   ImageButtonCount <= 0: 0 (21.0)
+|   |   |   |   |   |   |   ImageButtonCount > 0
+|   |   |   |   |   |   |   |   buttonCount <= 2: 0 (5.0)
+|   |   |   |   |   |   |   |   buttonCount > 2
+|   |   |   |   |   |   |   |   |   deleteSMS = 1: 0 (2.0)
+|   |   |   |   |   |   |   |   |   deleteSMS = 0: -1 (10.0)
+|   |   |   |   |   |   ACCESS_COARSE_LOCATION = 0
+|   |   |   |   |   |   |   CALL_PHONE = 1
+|   |   |   |   |   |   |   |   serviceCount <= 2: 0 (5.0)
+|   |   |   |   |   |   |   |   serviceCount > 2: -1 (3.0)
+|   |   |   |   |   |   |   CALL_PHONE = 0: 0 (139.0/1.0)
+|   |   |   |   |   RadioButtonCount > 2
+|   |   |   |   |   |   deleteSMS = 1: -1 (9.0)
+|   |   |   |   |   |   deleteSMS = 0: 0 (2.0)
+|   |   |   sendSMS = 0
+|   |   |   |   READ_EXTERNAL_STORAGE = 1
+|   |   |   |   |   subprocess = 1
+|   |   |   |   |   |   ACCESS_COARSE_LOCATION = 1
+|   |   |   |   |   |   |   apk_size <= 2393271
+|   |   |   |   |   |   |   |   deviceId = 1
+|   |   |   |   |   |   |   |   |   CAMERA = 1: 0 (3.0/1.0)
+|   |   |   |   |   |   |   |   |   CAMERA = 0
+|   |   |   |   |   |   |   |   |   |   native_count <= 28
+|   |   |   |   |   |   |   |   |   |   |   RECORD_AUDIO = 1: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   RECORD_AUDIO = 0: -1 (9.0)
+|   |   |   |   |   |   |   |   |   |   native_count > 28: -1 (182.0/1.0)
+|   |   |   |   |   |   |   |   deviceId = 0: 0 (5.0)
+|   |   |   |   |   |   |   apk_size > 2393271: 0 (40.0/1.0)
+|   |   |   |   |   |   ACCESS_COARSE_LOCATION = 0
+|   |   |   |   |   |   |   simCountry = 1
+|   |   |   |   |   |   |   |   min_andrversion <= 5: -1 (4.0)
+|   |   |   |   |   |   |   |   min_andrversion > 5: 0 (4.0)
+|   |   |   |   |   |   |   simCountry = 0: 0 (117.0/2.0)
+|   |   |   |   |   subprocess = 0: 0 (926.0/1.0)
+|   |   |   |   READ_EXTERNAL_STORAGE = 0
+|   |   |   |   |   READ_LOGS = 1
+|   |   |   |   |   |   target_andrversion <= 1
+|   |   |   |   |   |   |   deviceId = 1
+|   |   |   |   |   |   |   |   TextViewCount <= 24
+|   |   |   |   |   |   |   |   |   CALL_PHONE = 1: 0 (8.0)
+|   |   |   |   |   |   |   |   |   CALL_PHONE = 0
+|   |   |   |   |   |   |   |   |   |   permissionCount <= 23
+|   |   |   |   |   |   |   |   |   |   |   exportedCount <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   RECORD_AUDIO = 1: 0 (6.0)
+|   |   |   |   |   |   |   |   |   |   |   |   RECORD_AUDIO = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   classCount <= 388
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   native_count <= 0: -1 (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   native_count > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   jni = 1
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   min_andrversion <= 3: -1 (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   min_andrversion > 3: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   jni = 0: 0 (61.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   classCount > 388
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   apk_size <= 2023659
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   SpinnerCount <= 1
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   buttonCount <= 6: -1 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   buttonCount > 6: 0 (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   SpinnerCount > 1: -1 (20.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   apk_size > 2023659: 0 (8.0)
+|   |   |   |   |   |   |   |   |   |   |   exportedCount > 0: -1 (5.0)
+|   |   |   |   |   |   |   |   |   |   permissionCount > 23: -1 (7.0)
+|   |   |   |   |   |   |   |   TextViewCount > 24: 0 (47.0)
+|   |   |   |   |   |   |   deviceId = 0: 0 (85.0/1.0)
+|   |   |   |   |   |   target_andrversion > 1: 0 (163.0)
+|   |   |   |   |   READ_LOGS = 0
+|   |   |   |   |   |   subprocess = 1
+|   |   |   |   |   |   |   ACCESS_COARSE_LOCATION = 1
+|   |   |   |   |   |   |   |   min_andrversion <= 2
+|   |   |   |   |   |   |   |   |   ListViewCount <= 1
+|   |   |   |   |   |   |   |   |   |   native_count <= 105: -1 (28.0/1.0)
+|   |   |   |   |   |   |   |   |   |   native_count > 105: 0 (2.0)
+|   |   |   |   |   |   |   |   |   ListViewCount > 1: 0 (4.0)
+|   |   |   |   |   |   |   |   min_andrversion > 2
+|   |   |   |   |   |   |   |   |   deleteSMS = 1
+|   |   |   |   |   |   |   |   |   |   fileCount <= 178
+|   |   |   |   |   |   |   |   |   |   |   buttonCount <= 2: 0 (19.0)
+|   |   |   |   |   |   |   |   |   |   |   buttonCount > 2
+|   |   |   |   |   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 1: 0 (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   permissionCount <= 6: 0 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   permissionCount > 6
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   SpinnerCount <= 0: -1 (46.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   SpinnerCount > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   apk_size <= 448893: -1 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   apk_size > 448893: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   fileCount > 178: 0 (40.0)
+|   |   |   |   |   |   |   |   |   deleteSMS = 0
+|   |   |   |   |   |   |   |   |   |   INSTALL_PACKAGES = 1: -1 (3.0)
+|   |   |   |   |   |   |   |   |   |   INSTALL_PACKAGES = 0
+|   |   |   |   |   |   |   |   |   |   |   ImageButtonCount <= 1: 0 (333.0/5.0)
+|   |   |   |   |   |   |   |   |   |   |   ImageButtonCount > 1
+|   |   |   |   |   |   |   |   |   |   |   |   reflect_count <= 25
+|   |   |   |   |   |   |   |   |   |   |   |   |   deviceId = 1
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   TextViewCount <= 29
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   apk_size <= 3057973
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   providerCount <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   methodCount <= 1508: 0 (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   methodCount > 1508
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   TextViewCount <= 3: 0 (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   TextViewCount > 3: -1 (50.0/3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   providerCount > 0: 0 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   apk_size > 3057973: 0 (8.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   TextViewCount > 29: 0 (29.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   deviceId = 0: 0 (41.0)
+|   |   |   |   |   |   |   |   |   |   |   |   reflect_count > 25: 0 (69.0)
+|   |   |   |   |   |   |   ACCESS_COARSE_LOCATION = 0
+|   |   |   |   |   |   |   |   RadioGroupCount <= 0
+|   |   |   |   |   |   |   |   |   SpinnerCount <= 1
+|   |   |   |   |   |   |   |   |   |   BLUETOOTH = 1
+|   |   |   |   |   |   |   |   |   |   |   classCount <= 32: -1 (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   classCount > 32: 0 (42.0)
+|   |   |   |   |   |   |   |   |   |   BLUETOOTH = 0: 0 (2188.0/13.0)
+|   |   |   |   |   |   |   |   |   SpinnerCount > 1
+|   |   |   |   |   |   |   |   |   |   jni = 1
+|   |   |   |   |   |   |   |   |   |   |   target_andrversion <= 2
+|   |   |   |   |   |   |   |   |   |   |   |   permissionCount <= 4: 0 (7.0)
+|   |   |   |   |   |   |   |   |   |   |   |   permissionCount > 4: -1 (13.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   target_andrversion > 2: 0 (18.0)
+|   |   |   |   |   |   |   |   |   |   jni = 0: 0 (171.0/4.0)
+|   |   |   |   |   |   |   |   RadioGroupCount > 0
+|   |   |   |   |   |   |   |   |   classCount <= 83
+|   |   |   |   |   |   |   |   |   |   min_andrversion <= 5: -1 (13.0)
+|   |   |   |   |   |   |   |   |   |   min_andrversion > 5: 0 (3.0)
+|   |   |   |   |   |   |   |   |   classCount > 83: 0 (141.0)
+|   |   |   |   |   |   subprocess = 0
+|   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 1
+|   |   |   |   |   |   |   |   permissionCount <= 23
+|   |   |   |   |   |   |   |   |   simCountry = 1
+|   |   |   |   |   |   |   |   |   |   min_andrversion <= 3
+|   |   |   |   |   |   |   |   |   |   |   serviceCount <= 0: -1 (13.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   serviceCount > 0: 0 (8.0)
+|   |   |   |   |   |   |   |   |   |   min_andrversion > 3: 0 (41.0)
+|   |   |   |   |   |   |   |   |   simCountry = 0
+|   |   |   |   |   |   |   |   |   |   deviceId = 1
+|   |   |   |   |   |   |   |   |   |   |   classCount <= 67
+|   |   |   |   |   |   |   |   |   |   |   |   classCount <= 27: -1 (10.0)
+|   |   |   |   |   |   |   |   |   |   |   |   classCount > 27: 0 (13.0)
+|   |   |   |   |   |   |   |   |   |   |   classCount > 67: 0 (434.0/13.0)
+|   |   |   |   |   |   |   |   |   |   deviceId = 0: 0 (1412.0/2.0)
+|   |   |   |   |   |   |   |   permissionCount > 23
+|   |   |   |   |   |   |   |   |   deleteSMS = 1
+|   |   |   |   |   |   |   |   |   |   EditViewCount <= 1
+|   |   |   |   |   |   |   |   |   |   |   apk_size <= 2401664: -1 (21.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   apk_size > 2401664: 0 (4.0)
+|   |   |   |   |   |   |   |   |   |   EditViewCount > 1: 0 (3.0)
+|   |   |   |   |   |   |   |   |   deleteSMS = 0: 0 (9.0)
+|   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 0
+|   |   |   |   |   |   |   |   min_andrversion <= 0
+|   |   |   |   |   |   |   |   |   RECORD_AUDIO = 1: -1 (2.0)
+|   |   |   |   |   |   |   |   |   RECORD_AUDIO = 0
+|   |   |   |   |   |   |   |   |   |   INSTALL_PACKAGES = 1: -1 (2.0)
+|   |   |   |   |   |   |   |   |   |   INSTALL_PACKAGES = 0: 0 (298.0/6.0)
+|   |   |   |   |   |   |   |   min_andrversion > 0
+|   |   |   |   |   |   |   |   |   simCountry = 1
+|   |   |   |   |   |   |   |   |   |   native_count <= 102: 0 (529.0)
+|   |   |   |   |   |   |   |   |   |   native_count > 102
+|   |   |   |   |   |   |   |   |   |   |   reflect_count <= 1: -1 (11.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   reflect_count > 1: 0 (24.0)
+|   |   |   |   |   |   |   |   |   simCountry = 0
+|   |   |   |   |   |   |   |   |   |   READ_CONTACTS = 1
+|   |   |   |   |   |   |   |   |   |   |   methodCount <= 65
+|   |   |   |   |   |   |   |   |   |   |   |   httpPost = 1
+|   |   |   |   |   |   |   |   |   |   |   |   |   native_count <= 0: 0 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   native_count > 0: -1 (9.0)
+|   |   |   |   |   |   |   |   |   |   |   |   httpPost = 0: 0 (100.0)
+|   |   |   |   |   |   |   |   |   |   |   methodCount > 65: 0 (1366.0/3.0)
+|   |   |   |   |   |   |   |   |   |   READ_CONTACTS = 0: 0 (36187.0/38.0)
+|   |   receiverCount > 3
+|   |   |   deviceId = 1
+|   |   |   |   activityCount <= 3
+|   |   |   |   |   RECEIVE_BOOT_COMPLETED = 1
+|   |   |   |   |   |   native_count <= 36
+|   |   |   |   |   |   |   TextViewCount <= 6: -1 (129.0/1.0)
+|   |   |   |   |   |   |   TextViewCount > 6
+|   |   |   |   |   |   |   |   min_andrversion <= 4: -1 (4.0)
+|   |   |   |   |   |   |   |   min_andrversion > 4: 0 (3.0)
+|   |   |   |   |   |   native_count > 36
+|   |   |   |   |   |   |   methodCount <= 1019: 0 (6.0)
+|   |   |   |   |   |   |   methodCount > 1019
+|   |   |   |   |   |   |   |   serviceCount <= 3: -1 (18.0)
+|   |   |   |   |   |   |   |   serviceCount > 3: 0 (2.0)
+|   |   |   |   |   RECEIVE_BOOT_COMPLETED = 0: 0 (15.0)
+|   |   |   |   activityCount > 3
+|   |   |   |   |   ACCESS_COARSE_LOCATION = 1
+|   |   |   |   |   |   exportedCount <= 0
+|   |   |   |   |   |   |   apk_size <= 2167952
+|   |   |   |   |   |   |   |   httpPost = 1
+|   |   |   |   |   |   |   |   |   target_andrversion <= 4
+|   |   |   |   |   |   |   |   |   |   target_andrversion <= 2
+|   |   |   |   |   |   |   |   |   |   |   reflect_count <= 23
+|   |   |   |   |   |   |   |   |   |   |   |   EditViewCount <= 4
+|   |   |   |   |   |   |   |   |   |   |   |   |   methodCount <= 1662
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   fileCount <= 64
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   ACCESS_FINE_LOCATION = 1: -1 (13.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   ACCESS_FINE_LOCATION = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   reflect_count <= 0: -1 (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   reflect_count > 0: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   fileCount > 64
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   subprocess = 1: 0 (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   subprocess = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   dex_size <= 313468: 0 (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   dex_size > 313468: -1 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   methodCount > 1662
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   fileCount <= 41
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   dex_size <= 860280: -1 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   dex_size > 860280: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   fileCount > 41: -1 (80.0)
+|   |   |   |   |   |   |   |   |   |   |   |   EditViewCount > 4
+|   |   |   |   |   |   |   |   |   |   |   |   |   sendSMS = 1: -1 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   sendSMS = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   permissionCount <= 9: -1 (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   permissionCount > 9: 0 (5.0)
+|   |   |   |   |   |   |   |   |   |   |   reflect_count > 23
+|   |   |   |   |   |   |   |   |   |   |   |   native_count <= 46: -1 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   native_count > 46: 0 (8.0)
+|   |   |   |   |   |   |   |   |   |   target_andrversion > 2: -1 (7.0)
+|   |   |   |   |   |   |   |   |   target_andrversion > 4
+|   |   |   |   |   |   |   |   |   |   deleteSMS = 1
+|   |   |   |   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 1
+|   |   |   |   |   |   |   |   |   |   |   |   dex_size <= 1094972: -1 (13.0)
+|   |   |   |   |   |   |   |   |   |   |   |   dex_size > 1094972: 0 (17.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 0: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   deleteSMS = 0: 0 (16.0)
+|   |   |   |   |   |   |   |   httpPost = 0: 0 (2.0)
+|   |   |   |   |   |   |   apk_size > 2167952: 0 (46.0/4.0)
+|   |   |   |   |   |   exportedCount > 0
+|   |   |   |   |   |   |   serviceCount <= 2
+|   |   |   |   |   |   |   |   fileCount <= 74: -1 (6.0)
+|   |   |   |   |   |   |   |   fileCount > 74: 0 (4.0)
+|   |   |   |   |   |   |   serviceCount > 2
+|   |   |   |   |   |   |   |   reflect_count <= 8: 0 (68.0)
+|   |   |   |   |   |   |   |   reflect_count > 8
+|   |   |   |   |   |   |   |   |   methodCount <= 3435: -1 (3.0)
+|   |   |   |   |   |   |   |   |   methodCount > 3435: 0 (14.0)
+|   |   |   |   |   ACCESS_COARSE_LOCATION = 0
+|   |   |   |   |   |   target_andrversion <= 2
+|   |   |   |   |   |   |   serviceCount <= 2
+|   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 1
+|   |   |   |   |   |   |   |   |   CAMERA = 1: 0 (6.0)
+|   |   |   |   |   |   |   |   |   CAMERA = 0
+|   |   |   |   |   |   |   |   |   |   CheckBoxCount <= 3
+|   |   |   |   |   |   |   |   |   |   |   RadioButtonCount <= 1
+|   |   |   |   |   |   |   |   |   |   |   |   serviceCount <= 0: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   serviceCount > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   receiverCount <= 6
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   dex_size <= 1216044
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   subprocess = 1
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   ImageButtonCount <= 1: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   ImageButtonCount > 1: -1 (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   subprocess = 0: -1 (19.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   dex_size > 1216044: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   receiverCount > 6: 0 (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   RadioButtonCount > 1: 0 (3.0)
+|   |   |   |   |   |   |   |   |   |   CheckBoxCount > 3: 0 (9.0)
+|   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 0: 0 (38.0/2.0)
+|   |   |   |   |   |   |   serviceCount > 2: 0 (39.0)
+|   |   |   |   |   |   target_andrversion > 2: 0 (230.0/2.0)
+|   |   |   deviceId = 0: 0 (863.0/2.0)
+
+Number of Leaves  : 	275
+
+Size of the tree : 	549
+
+
+Time taken to build model: 17.25 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       54892               98.7781 %
+Incorrectly Classified Instances       679                1.2219 %
+Kappa statistic                          0.9314
+Mean absolute error                      0.0157
+Root mean squared error                  0.1071
+Relative absolute error                  8.7981 %
+Root relative squared error             35.8801 %
+Total Number of Instances            55571     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.937    0.007    0.939      0.937    0.938      0.931    0.971     0.906     -1
+                 0.993    0.063    0.993      0.993    0.993      0.931    0.971     0.991     0
+Weighted Avg.    0.988    0.058    0.988      0.988    0.988      0.931    0.971     0.982     
+
+=== Confusion Matrix ===
+
+     a     b   <-- classified as
+  5149   347 |     a = -1
+   332 49743 |     b = 0
+
