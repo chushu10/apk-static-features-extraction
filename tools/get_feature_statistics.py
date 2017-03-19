@@ -6,7 +6,7 @@ import arff, os, argparse
 from terminaltables import AsciiTable
 
 def main():
-    f = open('../weka_arff/malware_5671_all.arff', 'r')
+    f = open('../weka_arff/benign_53422_all.arff', 'r')
     file = f.read()
     f.close()
     dataset = arff.loads(file)
