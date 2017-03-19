@@ -1,0 +1,262 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     testset
+Instances:    10876
+Attributes:   68
+              apk_size
+              dex_size
+              min_andrversion
+              max_andrversion
+              target_andrversion
+              security
+              methodCount
+              classCount
+              crypto_count
+              dynCode_count
+              native_count
+              reflect_count
+              sendSMS
+              deleteSMS
+              interruptSMS
+              httpPost
+              deviceId
+              simCountry
+              installedPkg
+              loadOtherCode
+              subprocess
+              executeOtherCode
+              jni
+              unix
+              buttonCount
+              TextViewCount
+              EditViewCount
+              ImageButtonCount
+              CheckBoxCount
+              RadioGroupCount
+              RadioButtonCount
+              ToastCount
+              SpinnerCount
+              ListViewCount
+              fileCount
+              INTERNET
+              SET_DEBUG_APP
+              MODIFY_PHONE_STATE
+              RECORD_AUDIO
+              RECEIVE_BOOT_COMPLETED
+              RECEIVE_MMS
+              RECEIVE_SMS
+              RECEIVE_WAP_PUSH
+              SEND_SMS
+              CALL_PHONE
+              CALL_PRIVILEGED
+              PROCESS_OUTGOING_CALLS
+              READ_CALL_LOG
+              READ_EXTERNAL_STORAGE
+              READ_LOGS
+              ACCESS_COARSE_LOCATION
+              ACCESS_FINE_LOCATION
+              BLUETOOTH
+              CAMERA
+              INSTALL_PACKAGES
+              NFC
+              READ_CONTACTS
+              permissionCount
+              activityCount
+              serviceCount
+              receiverCount
+              providerCount
+              exportedCount
+              hPictureCount
+              mPictureCount
+              lPictureCount
+              xPictureCount
+              totalCount
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+permissionCount <= 0
+|   xPictureCount <= 0
+|   |   INTERNET = 1
+|   |   |   min_andrversion <= 8
+|   |   |   |   hPictureCount <= 125
+|   |   |   |   |   exportedCount <= 1
+|   |   |   |   |   |   target_andrversion <= 12
+|   |   |   |   |   |   |   CheckBoxCount <= 0
+|   |   |   |   |   |   |   |   SEND_SMS = 1: -1 (2232.0/6.0)
+|   |   |   |   |   |   |   |   SEND_SMS = 0
+|   |   |   |   |   |   |   |   |   deviceId = 1
+|   |   |   |   |   |   |   |   |   |   native_count <= 8
+|   |   |   |   |   |   |   |   |   |   |   serviceCount <= 0: 0 (8.0)
+|   |   |   |   |   |   |   |   |   |   |   serviceCount > 0
+|   |   |   |   |   |   |   |   |   |   |   |   totalCount <= 5: -1 (106.0/3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   totalCount > 5
+|   |   |   |   |   |   |   |   |   |   |   |   |   target_andrversion <= 4: -1 (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   target_andrversion > 4: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   native_count > 8
+|   |   |   |   |   |   |   |   |   |   |   httpPost = 1: -1 (2467.0/26.0)
+|   |   |   |   |   |   |   |   |   |   |   httpPost = 0: 0 (3.0)
+|   |   |   |   |   |   |   |   |   deviceId = 0
+|   |   |   |   |   |   |   |   |   |   activityCount <= 2
+|   |   |   |   |   |   |   |   |   |   |   native_count <= 5
+|   |   |   |   |   |   |   |   |   |   |   |   target_andrversion <= 5
+|   |   |   |   |   |   |   |   |   |   |   |   |   httpPost = 1: -1 (28.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   httpPost = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   subprocess = 1: -1 (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   subprocess = 0: 0 (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   target_andrversion > 5: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   native_count > 5: 0 (8.0/1.0)
+|   |   |   |   |   |   |   |   |   |   activityCount > 2
+|   |   |   |   |   |   |   |   |   |   |   jni = 1: -1 (6.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   jni = 0: 0 (48.0/3.0)
+|   |   |   |   |   |   |   CheckBoxCount > 0
+|   |   |   |   |   |   |   |   deviceId = 1
+|   |   |   |   |   |   |   |   |   subprocess = 1
+|   |   |   |   |   |   |   |   |   |   installedPkg = 1: -1 (422.0/4.0)
+|   |   |   |   |   |   |   |   |   |   installedPkg = 0
+|   |   |   |   |   |   |   |   |   |   |   apk_size <= 2437492
+|   |   |   |   |   |   |   |   |   |   |   |   READ_LOGS = 1
+|   |   |   |   |   |   |   |   |   |   |   |   |   RadioButtonCount <= 1: -1 (7.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   RadioButtonCount > 1: 0 (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   READ_LOGS = 0: -1 (82.0)
+|   |   |   |   |   |   |   |   |   |   |   apk_size > 2437492: 0 (7.0/1.0)
+|   |   |   |   |   |   |   |   |   subprocess = 0
+|   |   |   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 1: -1 (41.0/2.0)
+|   |   |   |   |   |   |   |   |   |   RECEIVE_BOOT_COMPLETED = 0
+|   |   |   |   |   |   |   |   |   |   |   installedPkg = 1: -1 (7.0)
+|   |   |   |   |   |   |   |   |   |   |   installedPkg = 0
+|   |   |   |   |   |   |   |   |   |   |   |   simCountry = 1: -1 (6.0)
+|   |   |   |   |   |   |   |   |   |   |   |   simCountry = 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   ImageButtonCount <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   READ_CONTACTS = 1: -1 (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   READ_CONTACTS = 0: 0 (7.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   ImageButtonCount > 0: 0 (8.0)
+|   |   |   |   |   |   |   |   deviceId = 0
+|   |   |   |   |   |   |   |   |   sendSMS = 1: -1 (2.0)
+|   |   |   |   |   |   |   |   |   sendSMS = 0
+|   |   |   |   |   |   |   |   |   |   jni = 1
+|   |   |   |   |   |   |   |   |   |   |   serviceCount <= 1: 0 (6.0)
+|   |   |   |   |   |   |   |   |   |   |   serviceCount > 1: -1 (2.0)
+|   |   |   |   |   |   |   |   |   |   jni = 0: 0 (29.0)
+|   |   |   |   |   |   target_andrversion > 12
+|   |   |   |   |   |   |   RECEIVE_SMS = 1: -1 (39.0)
+|   |   |   |   |   |   |   RECEIVE_SMS = 0
+|   |   |   |   |   |   |   |   ACCESS_FINE_LOCATION = 1: -1 (13.0/1.0)
+|   |   |   |   |   |   |   |   ACCESS_FINE_LOCATION = 0
+|   |   |   |   |   |   |   |   |   simCountry = 1: -1 (3.0/1.0)
+|   |   |   |   |   |   |   |   |   simCountry = 0: 0 (15.0/1.0)
+|   |   |   |   |   exportedCount > 1
+|   |   |   |   |   |   SpinnerCount <= 1
+|   |   |   |   |   |   |   receiverCount <= 3: 0 (15.0)
+|   |   |   |   |   |   |   receiverCount > 3: -1 (3.0)
+|   |   |   |   |   |   SpinnerCount > 1: -1 (13.0/1.0)
+|   |   |   |   hPictureCount > 125
+|   |   |   |   |   simCountry = 1: -1 (3.0)
+|   |   |   |   |   simCountry = 0
+|   |   |   |   |   |   BLUETOOTH = 1: 0 (7.0)
+|   |   |   |   |   |   BLUETOOTH = 0
+|   |   |   |   |   |   |   MODIFY_PHONE_STATE = 1: -1 (5.0)
+|   |   |   |   |   |   |   MODIFY_PHONE_STATE = 0
+|   |   |   |   |   |   |   |   CALL_PHONE = 1: 0 (7.0)
+|   |   |   |   |   |   |   |   CALL_PHONE = 0
+|   |   |   |   |   |   |   |   |   RadioGroupCount <= 1
+|   |   |   |   |   |   |   |   |   |   receiverCount <= 3
+|   |   |   |   |   |   |   |   |   |   |   READ_LOGS = 1: -1 (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   READ_LOGS = 0: 0 (11.0)
+|   |   |   |   |   |   |   |   |   |   receiverCount > 3: -1 (9.0)
+|   |   |   |   |   |   |   |   |   RadioGroupCount > 1: -1 (2.0)
+|   |   |   min_andrversion > 8: 0 (26.0/1.0)
+|   |   INTERNET = 0
+|   |   |   SEND_SMS = 1
+|   |   |   |   activityCount <= 3: -1 (27.0)
+|   |   |   |   activityCount > 3: 0 (5.0)
+|   |   |   SEND_SMS = 0
+|   |   |   |   deviceId = 1
+|   |   |   |   |   min_andrversion <= 3: -1 (3.0)
+|   |   |   |   |   min_andrversion > 3: 0 (3.0)
+|   |   |   |   deviceId = 0
+|   |   |   |   |   min_andrversion <= 1
+|   |   |   |   |   |   reflect_count <= 1
+|   |   |   |   |   |   |   apk_size <= 580216: 0 (11.0)
+|   |   |   |   |   |   |   apk_size > 580216
+|   |   |   |   |   |   |   |   TextViewCount <= 4: -1 (3.0)
+|   |   |   |   |   |   |   |   TextViewCount > 4: 0 (2.0)
+|   |   |   |   |   |   reflect_count > 1: -1 (4.0)
+|   |   |   |   |   min_andrversion > 1
+|   |   |   |   |   |   BLUETOOTH = 1
+|   |   |   |   |   |   |   CheckBoxCount <= 0: -1 (2.0)
+|   |   |   |   |   |   |   CheckBoxCount > 0: 0 (4.0)
+|   |   |   |   |   |   BLUETOOTH = 0: 0 (195.0/3.0)
+|   xPictureCount > 0
+|   |   totalCount <= 21
+|   |   |   target_andrversion <= 16
+|   |   |   |   min_andrversion <= 8
+|   |   |   |   |   simCountry = 1: 0 (3.0)
+|   |   |   |   |   simCountry = 0
+|   |   |   |   |   |   INTERNET = 1
+|   |   |   |   |   |   |   CheckBoxCount <= 0
+|   |   |   |   |   |   |   |   receiverCount <= 1
+|   |   |   |   |   |   |   |   |   reflect_count <= 5: 0 (7.0/1.0)
+|   |   |   |   |   |   |   |   |   reflect_count > 5
+|   |   |   |   |   |   |   |   |   |   apk_size <= 5278631: -1 (32.0/1.0)
+|   |   |   |   |   |   |   |   |   |   apk_size > 5278631: 0 (2.0)
+|   |   |   |   |   |   |   |   receiverCount > 1: -1 (94.0)
+|   |   |   |   |   |   |   CheckBoxCount > 0
+|   |   |   |   |   |   |   |   ACCESS_COARSE_LOCATION = 1: -1 (5.0)
+|   |   |   |   |   |   |   |   ACCESS_COARSE_LOCATION = 0: 0 (5.0)
+|   |   |   |   |   |   INTERNET = 0
+|   |   |   |   |   |   |   sendSMS = 1: -1 (4.0)
+|   |   |   |   |   |   |   sendSMS = 0: 0 (10.0)
+|   |   |   |   min_andrversion > 8: 0 (11.0)
+|   |   |   target_andrversion > 16: 0 (50.0)
+|   |   totalCount > 21
+|   |   |   fileCount <= 94
+|   |   |   |   ACCESS_COARSE_LOCATION = 1: -1 (6.0)
+|   |   |   |   ACCESS_COARSE_LOCATION = 0
+|   |   |   |   |   apk_size <= 589384: 0 (15.0)
+|   |   |   |   |   apk_size > 589384: -1 (4.0/1.0)
+|   |   |   fileCount > 94
+|   |   |   |   lPictureCount <= 19: 0 (786.0/7.0)
+|   |   |   |   lPictureCount > 19
+|   |   |   |   |   fileCount <= 248
+|   |   |   |   |   |   receiverCount <= 3: 0 (4.0)
+|   |   |   |   |   |   receiverCount > 3: -1 (4.0)
+|   |   |   |   |   fileCount > 248: 0 (44.0)
+permissionCount > 0: 0 (3802.0)
+
+Number of Leaves  : 	75
+
+Size of the tree : 	149
+
+
+Time taken to build model: 1.08 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       10685               98.2438 %
+Incorrectly Classified Instances       191                1.7562 %
+Kappa statistic                          0.9648
+Mean absolute error                      0.0221
+Root mean squared error                  0.1293
+Relative absolute error                  4.4197 %
+Root relative squared error             25.8812 %
+Total Number of Instances            10876     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.986    0.022    0.980      0.986    0.983      0.965    0.984     0.963     -1
+                 0.978    0.014    0.985      0.978    0.982      0.965    0.984     0.986     0
+Weighted Avg.    0.982    0.018    0.982      0.982    0.982      0.965    0.984     0.974     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 5594   77 |    a = -1
+  114 5091 |    b = 0
+

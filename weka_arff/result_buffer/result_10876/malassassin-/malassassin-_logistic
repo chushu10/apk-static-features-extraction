@@ -1,0 +1,228 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.Logistic -R 1.0E-8 -M -1 -num-decimal-places 4
+Relation:     testset
+Instances:    10877
+Attributes:   63
+              apk_size
+              dex_size
+              min_andrversion
+              max_andrversion
+              target_andrversion
+              security
+              methodCount
+              classCount
+              crypto_count
+              dynCode_count
+              native_count
+              reflect_count
+              sendSMS
+              deleteSMS
+              interruptSMS
+              httpPost
+              deviceId
+              simCountry
+              installedPkg
+              loadOtherCode
+              subprocess
+              executeOtherCode
+              jni
+              unix
+              buttonCount
+              TextViewCount
+              EditViewCount
+              ImageButtonCount
+              CheckBoxCount
+              RadioGroupCount
+              RadioButtonCount
+              ToastCount
+              SpinnerCount
+              ListViewCount
+              fileCount
+              INTERNET
+              SET_DEBUG_APP
+              MODIFY_PHONE_STATE
+              RECORD_AUDIO
+              RECEIVE_BOOT_COMPLETED
+              RECEIVE_MMS
+              RECEIVE_SMS
+              RECEIVE_WAP_PUSH
+              SEND_SMS
+              CALL_PHONE
+              CALL_PRIVILEGED
+              PROCESS_OUTGOING_CALLS
+              READ_CALL_LOG
+              READ_EXTERNAL_STORAGE
+              READ_LOGS
+              ACCESS_COARSE_LOCATION
+              ACCESS_FINE_LOCATION
+              BLUETOOTH
+              CAMERA
+              INSTALL_PACKAGES
+              NFC
+              READ_CONTACTS
+              permissionCount
+              activityCount
+              serviceCount
+              receiverCount
+              providerCount
+              exportedCount
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Logistic Regression with ridge parameter of 1.0E-8
+Coefficients...
+                                            Class
+Variable                                       -1
+=================================================
+apk_size                                       -0
+dex_size                                        0
+min_andrversion                           -0.1327
+max_andrversion                            0.0002
+target_andrversion                         -0.147
+methodCount                               -0.0002
+classCount                                 0.0014
+native_count                              -0.0013
+reflect_count                               0.003
+sendSMS=0                                 -2.3843
+deleteSMS=0                               -1.0636
+interruptSMS=0                           215.5966
+httpPost=0                                 0.1002
+deviceId=0                                -1.5646
+simCountry=0                               0.1301
+installedPkg=0                            -1.8999
+subprocess=0                              -1.0349
+jni=0                                     -0.3383
+buttonCount                                0.0398
+TextViewCount                             -0.0298
+EditViewCount                             -0.0942
+ImageButtonCount                          -0.0092
+CheckBoxCount                             -0.2163
+RadioGroupCount                           -0.1516
+RadioButtonCount                          -0.0159
+ToastCount                                -0.1464
+SpinnerCount                               0.0457
+ListViewCount                             -0.1116
+fileCount                                 -0.0034
+INTERNET=0                                -1.9151
+SET_DEBUG_APP=0                          344.5865
+MODIFY_PHONE_STATE=0                       1.7571
+RECORD_AUDIO=0                            -0.9675
+RECEIVE_BOOT_COMPLETED=0                  -1.0917
+RECEIVE_MMS=0                              5.1566
+RECEIVE_SMS=0                             -1.9325
+RECEIVE_WAP_PUSH=0                        -3.6219
+SEND_SMS=0                                -1.9147
+CALL_PHONE=0                              -0.0051
+CALL_PRIVILEGED=0                          0.5745
+PROCESS_OUTGOING_CALLS=0                  -0.0944
+READ_CALL_LOG=0                          257.4655
+READ_EXTERNAL_STORAGE=0                    -2.086
+READ_LOGS=0                                0.0594
+ACCESS_COARSE_LOCATION=0                  -0.8507
+ACCESS_FINE_LOCATION=0                     -0.731
+BLUETOOTH=0                                0.9073
+CAMERA=0                                   2.6382
+INSTALL_PACKAGES=0                        -1.4221
+NFC=0                                     -0.7659
+READ_CONTACTS=0                            1.2167
+permissionCount                           -0.0033
+activityCount                              0.0203
+serviceCount                              -0.1931
+receiverCount                              0.1236
+providerCount                             -1.4595
+exportedCount                             -0.9521
+Intercept                               -808.0636
+
+
+Odds Ratios...
+                                            Class
+Variable                                       -1
+=================================================
+apk_size                                        1
+dex_size                                        1
+min_andrversion                            0.8757
+max_andrversion                            1.0002
+target_andrversion                         0.8633
+methodCount                                0.9998
+classCount                                 1.0014
+native_count                               0.9987
+reflect_count                               1.003
+sendSMS=0                                  0.0922
+deleteSMS=0                                0.3452
+interruptSMS=0              4.2897250637626475E93
+httpPost=0                                 1.1054
+deviceId=0                                 0.2092
+simCountry=0                                1.139
+installedPkg=0                             0.1496
+subprocess=0                               0.3553
+jni=0                                      0.7129
+buttonCount                                1.0406
+TextViewCount                              0.9707
+EditViewCount                              0.9101
+ImageButtonCount                           0.9908
+CheckBoxCount                              0.8055
+RadioGroupCount                            0.8594
+RadioButtonCount                           0.9842
+ToastCount                                 0.8638
+SpinnerCount                               1.0467
+ListViewCount                              0.8944
+fileCount                                  0.9966
+INTERNET=0                                 0.1473
+SET_DEBUG_APP=0             4.487544580617801E149
+MODIFY_PHONE_STATE=0                       5.7956
+RECORD_AUDIO=0                               0.38
+RECEIVE_BOOT_COMPLETED=0                   0.3356
+RECEIVE_MMS=0                            173.5731
+RECEIVE_SMS=0                              0.1448
+RECEIVE_WAP_PUSH=0                         0.0267
+SEND_SMS=0                                 0.1474
+CALL_PHONE=0                                0.995
+CALL_PRIVILEGED=0                          1.7763
+PROCESS_OUTGOING_CALLS=0                   0.9099
+READ_CALL_LOG=0             6.544024329171649E111
+READ_EXTERNAL_STORAGE=0                    0.1242
+READ_LOGS=0                                1.0612
+ACCESS_COARSE_LOCATION=0                   0.4271
+ACCESS_FINE_LOCATION=0                     0.4814
+BLUETOOTH=0                                2.4777
+CAMERA=0                                  13.9884
+INSTALL_PACKAGES=0                         0.2412
+NFC=0                                      0.4649
+READ_CONTACTS=0                            3.3759
+permissionCount                            0.9967
+activityCount                              1.0205
+serviceCount                               0.8244
+receiverCount                              1.1315
+providerCount                              0.2323
+exportedCount                              0.3859
+
+
+Time taken to build model: 1.94 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       10194               93.7207 %
+Incorrectly Classified Instances       683                6.2793 %
+Kappa statistic                          0.8744
+Mean absolute error                      0.0714
+Root mean squared error                  0.2307
+Relative absolute error                 14.2781 %
+Root relative squared error             46.1426 %
+Total Number of Instances            10877     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.933    0.059    0.942      0.933    0.938      0.874    0.976     0.970     -1
+                 0.941    0.067    0.932      0.941    0.937      0.874    0.975     0.977     0
+Weighted Avg.    0.937    0.063    0.937      0.937    0.937      0.874    0.975     0.973     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 5128  368 |    a = -1
+  315 5066 |    b = 0
+
