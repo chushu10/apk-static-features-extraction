@@ -1,0 +1,184 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -E 1.0 -C 250007" -calibrator "weka.classifiers.functions.Logistic -R 1.0E-8 -M -1 -num-decimal-places 4"
+Relation:     testset
+Instances:    10876
+Attributes:   68
+              apk_size
+              dex_size
+              min_andrversion
+              max_andrversion
+              target_andrversion
+              security
+              methodCount
+              classCount
+              crypto_count
+              dynCode_count
+              native_count
+              reflect_count
+              sendSMS
+              deleteSMS
+              interruptSMS
+              httpPost
+              deviceId
+              simCountry
+              installedPkg
+              loadOtherCode
+              subprocess
+              executeOtherCode
+              jni
+              unix
+              buttonCount
+              TextViewCount
+              EditViewCount
+              ImageButtonCount
+              CheckBoxCount
+              RadioGroupCount
+              RadioButtonCount
+              ToastCount
+              SpinnerCount
+              ListViewCount
+              fileCount
+              INTERNET
+              SET_DEBUG_APP
+              MODIFY_PHONE_STATE
+              RECORD_AUDIO
+              RECEIVE_BOOT_COMPLETED
+              RECEIVE_MMS
+              RECEIVE_SMS
+              RECEIVE_WAP_PUSH
+              SEND_SMS
+              CALL_PHONE
+              CALL_PRIVILEGED
+              PROCESS_OUTGOING_CALLS
+              READ_CALL_LOG
+              READ_EXTERNAL_STORAGE
+              READ_LOGS
+              ACCESS_COARSE_LOCATION
+              ACCESS_FINE_LOCATION
+              BLUETOOTH
+              CAMERA
+              INSTALL_PACKAGES
+              NFC
+              READ_CONTACTS
+              permissionCount
+              activityCount
+              serviceCount
+              receiverCount
+              providerCount
+              exportedCount
+              hPictureCount
+              mPictureCount
+              lPictureCount
+              xPictureCount
+              totalCount
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+SMO
+
+Kernel used:
+  Linear Kernel: K(x,y) = <x,y>
+
+Classifier for classes: -1, 0
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+         2.1539 * (normalized) apk_size
+ +      -0.3527 * (normalized) dex_size
+ +       2.7662 * (normalized) min_andrversion
+ +      -0.0023 * (normalized) max_andrversion
+ +       1.7591 * (normalized) target_andrversion
+ +       2.1901 * (normalized) methodCount
+ +       0.877  * (normalized) classCount
+ +      -0.4841 * (normalized) native_count
+ +       0.9531 * (normalized) reflect_count
+ +       1.0315 * (normalized) sendSMS=0
+ +      -2.8641 * (normalized) deleteSMS=0
+ +       0      * (normalized) interruptSMS=0
+ +      -0.1856 * (normalized) httpPost=0
+ +       1.2513 * (normalized) deviceId=0
+ +       0.0591 * (normalized) simCountry=0
+ +       0.4687 * (normalized) installedPkg=0
+ +       0.7869 * (normalized) subprocess=0
+ +       0.4284 * (normalized) jni=0
+ +      -0.288  * (normalized) buttonCount
+ +       3.2457 * (normalized) TextViewCount
+ +       2.7623 * (normalized) EditViewCount
+ +       0.288  * (normalized) ImageButtonCount
+ +       2.2856 * (normalized) CheckBoxCount
+ +       1.6107 * (normalized) RadioGroupCount
+ +       0.2832 * (normalized) RadioButtonCount
+ +       2.1396 * (normalized) ToastCount
+ +       0.0839 * (normalized) SpinnerCount
+ +       3.0052 * (normalized) ListViewCount
+ +       2.0105 * (normalized) fileCount
+ +       0.7644 * (normalized) INTERNET=0
+ +       0      * (normalized) SET_DEBUG_APP=0
+ +      -0.3709 * (normalized) MODIFY_PHONE_STATE=0
+ +       0.1669 * (normalized) RECORD_AUDIO=0
+ +       0.9727 * (normalized) RECEIVE_BOOT_COMPLETED=0
+ +      -1.8445 * (normalized) RECEIVE_MMS=0
+ +       0.414  * (normalized) RECEIVE_SMS=0
+ +       0.8085 * (normalized) RECEIVE_WAP_PUSH=0
+ +       1.4374 * (normalized) SEND_SMS=0
+ +      -0.0886 * (normalized) CALL_PHONE=0
+ +       0.1662 * (normalized) CALL_PRIVILEGED=0
+ +      -0.4587 * (normalized) PROCESS_OUTGOING_CALLS=0
+ +      -2      * (normalized) READ_CALL_LOG=0
+ +       0.6875 * (normalized) READ_EXTERNAL_STORAGE=0
+ +      -0.6574 * (normalized) READ_LOGS=0
+ +       0.4852 * (normalized) ACCESS_COARSE_LOCATION=0
+ +       0.1024 * (normalized) ACCESS_FINE_LOCATION=0
+ +      -0.2063 * (normalized) BLUETOOTH=0
+ +      -0.8313 * (normalized) CAMERA=0
+ +       0.3303 * (normalized) INSTALL_PACKAGES=0
+ +      -0.3069 * (normalized) NFC=0
+ +      -0.1104 * (normalized) READ_CONTACTS=0
+ +      16.7386 * (normalized) permissionCount
+ +       1.2394 * (normalized) activityCount
+ +       3.2234 * (normalized) serviceCount
+ +      -1.6324 * (normalized) receiverCount
+ +       0.5772 * (normalized) providerCount
+ +       5.5674 * (normalized) exportedCount
+ +       4.1463 * (normalized) hPictureCount
+ +       0.4767 * (normalized) mPictureCount
+ +       0.0999 * (normalized) lPictureCount
+ +       0.8251 * (normalized) xPictureCount
+ +       2.9969 * (normalized) totalCount
+ +       1.029 
+
+Number of kernel evaluations: 54932999 (48.567% cached)
+
+
+
+Time taken to build model: 34.64 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       10529               96.8095 %
+Incorrectly Classified Instances       347                3.1905 %
+Kappa statistic                          0.9361
+Mean absolute error                      0.0319
+Root mean squared error                  0.1786
+Relative absolute error                  6.3928 %
+Root relative squared error             35.7568 %
+Total Number of Instances            10876     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.972    0.036    0.967      0.972    0.969      0.936    0.968     0.955     -1
+                 0.964    0.028    0.969      0.964    0.967      0.936    0.968     0.951     0
+Weighted Avg.    0.968    0.032    0.968      0.968    0.968      0.936    0.968     0.953     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 5511  160 |    a = -1
+  187 5018 |    b = 0
+
