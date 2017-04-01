@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-import androlyze, argparse, zipfile, os, arff, traceback, sys
+from __future__ import division
+from progressbar import *
+import androlyze, argparse, zipfile, os, arff, traceback, sys, time
 
 class OrderedClassMembers(type):
     @classmethod
@@ -108,29 +109,46 @@ class FeatureVector(object):
         self.lPictureCount = lPictureCount
         self.xPictureCount = xPictureCount
         self.totalCount = totalCount
-        print (apk_size, dex_size, min_andrversion, max_andrversion,
-                 target_andrversion, security, methodCount,
-                 classCount, crypto_count, dynCode_count, native_count, reflect_count,
-                 sendSMS, deleteSMS, interruptSMS, httpPost, deviceId, simCountry,
-                 installedPkg, loadOtherCode, subprocess, executeOtherCode, jni, unix,
-                 buttonCount, TextViewCount, EditViewCount, ImageButtonCount, CheckBoxCount,
-                 RadioGroupCount, RadioButtonCount, ToastCount, SpinnerCount, ListViewCount,
-                 fileCount, INTERNET, SET_DEBUG_APP, MODIFY_PHONE_STATE, RECORD_AUDIO,
-                 RECEIVE_BOOT_COMPLETED, RECEIVE_MMS, RECEIVE_SMS, RECEIVE_WAP_PUSH,
-                 SEND_SMS, CALL_PHONE, CALL_PRIVILEGED, PROCESS_OUTGOING_CALLS, READ_CALL_LOG,
-                 READ_EXTERNAL_STORAGE, READ_LOGS, ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION,
-                 BLUETOOTH, CAMERA, INSTALL_PACKAGES, NFC, READ_CONTACTS,
-                 permissionCount, activityCount, serviceCount, receiverCount, providerCount,
-                 exportedCount, hPictureCount, mPictureCount, lPictureCount, xPictureCount, totalCount)
-        
+        # print (apk_size, dex_size, min_andrversion, max_andrversion,
+        #          target_andrversion, security, methodCount,
+        #          classCount, crypto_count, dynCode_count, native_count, reflect_count,
+        #          sendSMS, deleteSMS, interruptSMS, httpPost, deviceId, simCountry,
+        #          installedPkg, loadOtherCode, subprocess, executeOtherCode, jni, unix,
+        #          buttonCount, TextViewCount, EditViewCount, ImageButtonCount, CheckBoxCount,
+        #          RadioGroupCount, RadioButtonCount, ToastCount, SpinnerCount, ListViewCount,
+        #          fileCount, INTERNET, SET_DEBUG_APP, MODIFY_PHONE_STATE, RECORD_AUDIO,
+        #          RECEIVE_BOOT_COMPLETED, RECEIVE_MMS, RECEIVE_SMS, RECEIVE_WAP_PUSH,
+        #          SEND_SMS, CALL_PHONE, CALL_PRIVILEGED, PROCESS_OUTGOING_CALLS, READ_CALL_LOG,
+        #          READ_EXTERNAL_STORAGE, READ_LOGS, ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION,
+        #          BLUETOOTH, CAMERA, INSTALL_PACKAGES, NFC, READ_CONTACTS,
+        #          permissionCount, activityCount, serviceCount, receiverCount, providerCount,
+        #          exportedCount, hPictureCount, mPictureCount, lPictureCount, xPictureCount, totalCount)
+    
+def use_progressbar(title, maxval, marker='#', left='[', right=']'):
+    '''return a progressbar obj'''
+    widgets = [title,
+               Percentage(), ' ',
+               Bar(marker=marker, left=left, right=right),
+               ' ', ETA(), ' ']
+    pbar = ProgressBar(widgets=widgets, maxval=maxval)
+    return pbar
 
-def analyze(path_to_apk, path_to_session, security):
+def count_file(directory, extension):
+    '''count files with specific extension in a directory'''
+    count = 0
+    for parent, dirnames, filenames in os.walk(directory):
+        for filename in filenames:
+            if filename.endswith(extension):
+                count += 1
+    return count    
+
+def analyze(path_to_apk, security):
     apk_zip = zipfile.ZipFile(path_to_apk)
     apk_size = os.path.getsize(path_to_apk)
     dex_size = apk_zip.getinfo('classes.dex').file_size
 
     # Analyze apk
-    a, d, dx = androlyze.load_session(path_to_session)
+    a, d, dx = androlyze.AnalyzeAPK(path_to_apk, decompiler='dad')
 
     # APK features
     if a.get_min_sdk_version() is not None:
@@ -451,118 +469,148 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--directory', help='directory of the dataset')
     parser.add_argument('-s', '--security', help='benign(0) or malware(-1)')
+    parser.add_argument('-ext', '--extension', help='apk or vir')
     args = parser.parse_args()
-    if args.directory:
+    if args.directory and args.security and args.extension:
         directory = args.directory
-    else:
-        parser.print_help()
-    if args.security:
         security = args.security
+
+        # arff object
+        obj = {
+            'description': u'',
+            'relation': 'testset',
+            'attributes': [
+                ('apk_size', 'REAL'),
+                ('dex_size', 'REAL'),
+                ('min_andrversion', 'INTEGER'),
+                ('max_andrversion', 'INTEGER'),
+                ('target_andrversion', 'INTEGER'),
+                ('methodCount', 'INTEGER'),
+                ('classCount', 'INTEGER'),
+                ('crypto_count', 'INTEGER'),
+                ('dynCode_count', 'INTEGER'),
+                ('native_count', 'INTEGER'),
+                ('reflect_count', 'INTEGER'),
+                ('sendSMS', ['1', '0']),
+                ('deleteSMS', ['1', '0']),
+                ('interruptSMS', ['1', '0']),
+                ('httpPost', ['1', '0']),
+                ('deviceId', ['1', '0']),
+                ('simCountry', ['1', '0']),
+                ('installedPkg', ['1', '0']),
+                ('loadOtherCode', ['1', '0']),
+                ('subprocess', ['1', '0']),
+                ('executeOtherCode', ['1', '0']),
+                ('jni', ['1', '0']),
+                ('unix', ['1', '0']),
+                ('buttonCount', 'INTEGER'),
+                ('TextViewCount', 'INTEGER'),
+                ('EditViewCount', 'INTEGER'),
+                ('ImageButtonCount', 'INTEGER'),
+                ('CheckBoxCount', 'INTEGER'),
+                ('RadioGroupCount', 'INTEGER'),
+                ('RadioButtonCount', 'INTEGER'),
+                ('ToastCount', 'INTEGER'),
+                ('SpinnerCount', 'INTEGER'),
+                ('ListViewCount', 'INTEGER'),
+                ('fileCount', 'INTEGER'),
+                ('INTERNET', ['1', '0']),
+                ('SET_DEBUG_APP', ['1', '0']),
+                ('MODIFY_PHONE_STATE', ['1', '0']),
+                ('RECORD_AUDIO', ['1', '0']),
+                ('RECEIVE_BOOT_COMPLETED', ['1', '0']),
+                ('RECEIVE_MMS', ['1', '0']),
+                ('RECEIVE_SMS', ['1', '0']),
+                ('RECEIVE_WAP_PUSH', ['1', '0']),
+                ('SEND_SMS', ['1', '0']),
+                ('CALL_PHONE', ['1', '0']),
+                ('CALL_PRIVILEGED', ['1', '0']),
+                ('PROCESS_OUTGOING_CALLS', ['1', '0']),
+                ('READ_CALL_LOG', ['1', '0']),
+                ('READ_EXTERNAL_STORAGE', ['1', '0']),
+                ('READ_LOGS', ['1', '0']),
+                ('ACCESS_COARSE_LOCATION', ['1', '0']),
+                ('ACCESS_FINE_LOCATION', ['1', '0']),
+                ('BLUETOOTH', ['1', '0']),
+                ('CAMERA', ['1', '0']),
+                ('INSTALL_PACKAGES', ['1', '0']),
+                ('NFC', ['1', '0']),
+                ('READ_CONTACTS', ['1', '0']),
+                ('permissionCount', 'INTEGER'),
+                ('activityCount', 'INTEGER'),
+                ('serviceCount', 'INTEGER'),
+                ('receiverCount', 'INTEGER'),
+                ('providerCount', 'INTEGER'),
+                ('exportedCount', 'INTEGER'),
+                ('hPictureCount', 'INTEGER'),
+                ('mPictureCount', 'INTEGER'),
+                ('lPictureCount', 'INTEGER'),
+                ('xPictureCount', 'INTEGER'),
+                ('totalCount', 'INTEGER'),
+                ('security', ['-1','0']),
+            ],
+            'data': [],
+        }
+
+        extension = '.' + args.extension
+        # progressbar
+        file_count = count_file(args.directory, extension)
+        pbar = use_progressbar('analyzing apk...', file_count)
+        pbar.start()
+        progress = 0
+        # count time
+        analyze_time_list = []
+        min_file_size = sys.maxint
+        max_file_size = 0
+
+        for parent, dirs, files in os.walk(args.directory):
+            for file in files:
+                if file.endswith(extension):
+                    try:
+                        apk_file = os.path.join(parent, file)
+                        # check file size
+                        file_size = os.stat(apk_file).st_size
+                        # count time
+                        start_time = time.time()
+                        fv = analyze(apk_file, security)
+                        analyze_time = time.time() - start_time
+                        size_time_tuple = (file_size/(10**6), analyze_time)
+                        analyze_time_list.append(size_time_tuple)
+                        # file size
+                        if file_size > max_file_size:
+                            max_file_size = file_size
+                        if file_size < min_file_size:
+                            min_file_size = file_size
+                    except Exception, e:
+                        print "Exception in user code:"
+                        print '-'*60
+                        traceback.print_exc(file=sys.stdout)
+                        print '-'*60
+                        continue
+                    obj['data'].append([])
+                    for attr_name in obj['attributes']:
+                        for attr in dir(fv):
+                            if attr_name[0] == attr:
+                                obj['data'][progress].append(getattr(fv, attr))
+                    # progressbar
+                    progress += 1
+                    pbar.update(progress)
+
+        f = open(os.path.join(args.directory, 'weka_testset.arff'), 'w')
+        arff.dump(obj, f)
+        f.close()
+
+        analyze_time_list.sort(key=lambda tup: tup[0])
+        f = open(os.path.join(args.directory, 'analyze_time.txt'), 'w')
+        f.write('max file size:%f\n' % (max_file_size/(10**6)) )
+        f.write('min file size:%f\n' % (min_file_size/(10**6)) )
+        f.write('analyze time:\n')
+        for size_time_tuple in analyze_time_list:
+            f.write(str(size_time_tuple))
+        f.close()
+
     else:
         parser.print_help()
-
-    # arff object
-    obj = {
-        'description': u'',
-        'relation': 'testset',
-        'attributes': [
-            ('apk_size', 'REAL'),
-            ('dex_size', 'REAL'),
-            ('min_andrversion', 'INTEGER'),
-            ('max_andrversion', 'INTEGER'),
-            ('target_andrversion', 'INTEGER'),
-            ('security', ['-1','0']),
-            ('methodCount', 'INTEGER'),
-            ('classCount', 'INTEGER'),
-            ('crypto_count', 'INTEGER'),
-            ('dynCode_count', 'INTEGER'),
-            ('native_count', 'INTEGER'),
-            ('reflect_count', 'INTEGER'),
-            ('sendSMS', ['1', '0']),
-            ('deleteSMS', ['1', '0']),
-            ('interruptSMS', ['1', '0']),
-            ('httpPost', ['1', '0']),
-            ('deviceId', ['1', '0']),
-            ('simCountry', ['1', '0']),
-            ('installedPkg', ['1', '0']),
-            ('loadOtherCode', ['1', '0']),
-            ('subprocess', ['1', '0']),
-            ('executeOtherCode', ['1', '0']),
-            ('jni', ['1', '0']),
-            ('unix', ['1', '0']),
-            ('buttonCount', 'INTEGER'),
-            ('TextViewCount', 'INTEGER'),
-            ('EditViewCount', 'INTEGER'),
-            ('ImageButtonCount', 'INTEGER'),
-            ('CheckBoxCount', 'INTEGER'),
-            ('RadioGroupCount', 'INTEGER'),
-            ('RadioButtonCount', 'INTEGER'),
-            ('ToastCount', 'INTEGER'),
-            ('SpinnerCount', 'INTEGER'),
-            ('ListViewCount', 'INTEGER'),
-            ('fileCount', 'INTEGER'),
-            ('INTERNET', ['1', '0']),
-            ('SET_DEBUG_APP', ['1', '0']),
-            ('MODIFY_PHONE_STATE', ['1', '0']),
-            ('RECORD_AUDIO', ['1', '0']),
-            ('RECEIVE_BOOT_COMPLETED', ['1', '0']),
-            ('RECEIVE_MMS', ['1', '0']),
-            ('RECEIVE_SMS', ['1', '0']),
-            ('RECEIVE_WAP_PUSH', ['1', '0']),
-            ('SEND_SMS', ['1', '0']),
-            ('CALL_PHONE', ['1', '0']),
-            ('CALL_PRIVILEGED', ['1', '0']),
-            ('PROCESS_OUTGOING_CALLS', ['1', '0']),
-            ('READ_CALL_LOG', ['1', '0']),
-            ('READ_EXTERNAL_STORAGE', ['1', '0']),
-            ('READ_LOGS', ['1', '0']),
-            ('ACCESS_COARSE_LOCATION', ['1', '0']),
-            ('ACCESS_FINE_LOCATION', ['1', '0']),
-            ('BLUETOOTH', ['1', '0']),
-            ('CAMERA', ['1', '0']),
-            ('INSTALL_PACKAGES', ['1', '0']),
-            ('NFC', ['1', '0']),
-            ('READ_CONTACTS', ['1', '0']),
-            ('permissionCount', 'INTEGER'),
-            ('activityCount', 'INTEGER'),
-            ('serviceCount', 'INTEGER'),
-            ('receiverCount', 'INTEGER'),
-            ('providerCount', 'INTEGER'),
-            ('exportedCount', 'INTEGER'),
-            ('hPictureCount', 'INTEGER'),
-            ('mPictureCount', 'INTEGER'),
-            ('lPictureCount', 'INTEGER'),
-            ('xPictureCount', 'INTEGER'),
-            ('totalCount', 'INTEGER'),
-        ],
-        'data': [],
-    }
-
-    i = 0
-    print os.path.basename(os.path.normpath(directory))
-    for filename in os.listdir(directory):
-        if (os.path.splitext(filename)[1] == '.apk') or (os.path.splitext(filename)[1] == '.vir'):
-            print i+1, filename + ':'
-            try:
-                path_to_apk = os.path.join(directory, filename)
-                path_to_session = os.path.join(os.path.join(directory, 'sessions'), filename+'.json')
-                fv = analyze(path_to_apk, path_to_session, security)
-            except Exception, e:
-                print "Exception in user code:"
-                print '-'*60
-                traceback.print_exc(file=sys.stdout)
-                print '-'*60
-                continue
-            obj['data'].append([])
-            for attr_name in obj['attributes']:
-                for attr in dir(fv):
-                    if attr_name[0] == attr:
-                        obj['data'][i].append(getattr(fv, attr))
-            i += 1
-
-    f = open(os.path.join(directory, 'weka_testset.arff'), 'w')
-    arff.dump(obj, f)
-    f.close()
 
 if __name__ == '__main__':
     main()
